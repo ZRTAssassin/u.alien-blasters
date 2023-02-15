@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 1431144720}
   - component: {fileID: 1431144723}
   - component: {fileID: 1431144722}
+  - component: {fileID: 1431144724}
   m_Layer: 0
   m_Name: alienPink_front
   m_TagString: Untagged
@@ -568,7 +569,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &1431144723
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -663,3 +664,16 @@ PolygonCollider2D:
       - {x: -0.296875, y: -0.296875}
       - {x: -0.2890625, y: -0.4140625}
       - {x: -0.28125, y: -0.40625}
+--- !u!114 &1431144724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431144719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ae674a9d52df548ac52a024b6ec576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
