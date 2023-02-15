@@ -435,7 +435,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &569846331
 BoxCollider2D:
@@ -769,7 +769,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1431144722
 Rigidbody2D:
@@ -906,3 +906,5 @@ MonoBehaviour:
   _jumpDuration: 0.25
   _groundedRayDistance: 0.1
   _isGrounded: 0
+  _jumpSprite: {fileID: 21300000, guid: e544b77da07d2db4c85c03577b115654, type: 3}
+  _idleSprite: {fileID: 21300000, guid: d58f06190c3f24e4cb5493588cc92c04, type: 3}
