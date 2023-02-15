@@ -15,8 +15,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal");
-        // var vertical = Input.GetAxis("Vertical");
-        Debug.Log($"{horizontal}");
-        _rb.velocity = new Vector2(horizontal, _rb.velocity.y);
+        var vertical = _rb.velocity.y;
+        if (Input.GetButtonDown("Fire1"))
+        {
+            vertical = 5.0f;
+        }
+        _rb.velocity = new Vector2(horizontal, vertical);
     }
 }
