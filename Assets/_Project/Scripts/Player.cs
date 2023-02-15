@@ -7,6 +7,11 @@ namespace _Project.Scripts
     {
         [SerializeField] Rigidbody2D _rb;
         [SerializeField] SpriteRenderer _spriteRenderer;
+        
+
+        [Header("Input setup"), Space(5)]
+        [SerializeField] float _horizontal;
+
 
         [Header("Jump setup"), Space(5)] [SerializeField]
         float _jumpEndTime;
@@ -45,16 +50,13 @@ namespace _Project.Scripts
             if (hit.collider)
             {
                 _isGrounded = true;
-                _spriteRenderer.sprite = _defaultSprite;
             }
             else
             {
                 _isGrounded = false;
-                _spriteRenderer.sprite = _jumpSprite;
-                
             }
 
-            var horizontal = Input.GetAxis("Horizontal");
+            _horizontal = Input.GetAxis("Horizontal");
             var vertical = _rb.velocity.y;
             if (Input.GetButtonDown("Fire1") && _isGrounded)
             {
@@ -66,8 +68,19 @@ namespace _Project.Scripts
                 vertical = _jumpVelocity;
             }
 
-            horizontal *= _horizontalVelocity;
-            _rb.velocity = new Vector2(horizontal, vertical);
+            _horizontal *= _horizontalVelocity;
+            _rb.velocity = new Vector2(_horizontal, vertical);
+            UpdateSprite();
+        }
+
+        void UpdateSprite()
+        {
+            _spriteRenderer.sprite = _isGrounded ? _defaultSprite : _jumpSprite;
+            if (_horizontal > 0)
+                _spriteRenderer.flipX = false;
+            else if (_horizontal < 0)
+                _spriteRenderer.flipX = true;
+
         }
 
         void OnDrawGizmos()
