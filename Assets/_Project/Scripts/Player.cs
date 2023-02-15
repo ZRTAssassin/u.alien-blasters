@@ -9,6 +9,7 @@ namespace _Project.Scripts
 
         [Header("Jump setup"), Space(5)]
         [SerializeField] float _jumpEndTime;
+        [SerializeField] float _horizontalVelocity = 3.0f;
         [SerializeField] float _jumpVelocity = 5.0f;
         [SerializeField] float _jumpDuration = 0.25f;
         [SerializeField] float _groundedRayDistance = 0.1f;
@@ -48,6 +49,8 @@ namespace _Project.Scripts
             {
                 vertical = _jumpVelocity;
             }
+
+            horizontal *= _horizontalVelocity; 
             _rb.velocity = new Vector2(horizontal, vertical);
         }
 
