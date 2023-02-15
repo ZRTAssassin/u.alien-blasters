@@ -677,6 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
+  _spriteRenderer: {fileID: 1431144720}
   _jumpEndTime: 0
   _jumpVelocity: 5
-  _jumpDirection: 0.25
+  _jumpDuration: 0.25

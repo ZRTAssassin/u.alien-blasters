@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] SpriteRenderer _spriteRenderer;
 
     [Header("Jump setup"), Space(5)]
     [SerializeField] float _jumpEndTime;
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -32,5 +35,14 @@ public class Player : MonoBehaviour
             vertical = _jumpVelocity;
         }
         _rb.velocity = new Vector2(horizontal, vertical);
+    }
+
+    void OnDrawGizmos()
+    {
+        
+        float bottomY = _spriteRenderer.bounds.extents.y;
+        Vector2 origin = new Vector2(transform.position.x, transform.position.y - bottomY);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(origin, origin + Vector2.down * 0.1f);
     }
 }
