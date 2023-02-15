@@ -6,7 +6,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] Rigidbody2D _rb;
 
+    [Header("Jump setup"), Space(5)]
     [SerializeField] float _jumpEndTime;
+    [SerializeField] float _jumpVelocity = 5.0f;
+    [SerializeField] float _jumpDuration = 0.25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +24,12 @@ public class Player : MonoBehaviour
         var vertical = _rb.velocity.y;
         if (Input.GetButtonDown("Fire1"))
         {
-            _jumpEndTime = Time.time + 0.5f;
+            _jumpEndTime = Time.time + _jumpDuration;
         }
 
         if (Input.GetButton("Fire1") && _jumpEndTime > Time.time) 
         {
-            vertical = 5.0f;
+            vertical = _jumpVelocity;
         }
         _rb.velocity = new Vector2(horizontal, vertical);
     }

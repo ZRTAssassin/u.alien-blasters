@@ -677,3 +677,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
+  _jumpEndTime: 0
+  _jumpVelocity: 5
+  _jumpDirection: 0.25
