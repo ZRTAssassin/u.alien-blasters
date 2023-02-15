@@ -1,48 +1,62 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace _Project.Scripts
 {
-    [SerializeField] Rigidbody2D _rb;
-    [SerializeField] SpriteRenderer _spriteRenderer;
-
-    [Header("Jump setup"), Space(5)]
-    [SerializeField] float _jumpEndTime;
-    [SerializeField] float _jumpVelocity = 5.0f;
-    [SerializeField] float _jumpDuration = 0.25f;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Player : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody2D>();
-        
-    }
+        [SerializeField] Rigidbody2D _rb;
+        [SerializeField] SpriteRenderer _spriteRenderer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = _rb.velocity.y;
-        if (Input.GetButtonDown("Fire1"))
+        [Header("Jump setup"), Space(5)]
+        [SerializeField] float _jumpEndTime;
+        [SerializeField] float _jumpVelocity = 5.0f;
+        [SerializeField] float _jumpDuration = 0.25f;
+        [SerializeField] float _groundedRayDistance = 0.1f;
+        [SerializeField] bool _isGrounded;
+
+        public bool IsGrounded => _isGrounded;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            _jumpEndTime = Time.time + _jumpDuration;
+            _rb = GetComponent<Rigidbody2D>();
+        
         }
 
-        if (Input.GetButton("Fire1") && _jumpEndTime > Time.time) 
+        // Update is called once per frame
+        void Update()
         {
-            vertical = _jumpVelocity;
-        }
-        _rb.velocity = new Vector2(horizontal, vertical);
-    }
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
+            var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance);
+            if (hit.collider)
+            {
+                _isGrounded = true;
+            }
+            else
+            {
+                _isGrounded = false;
+            }
+            
+            var horizontal = Input.GetAxis("Horizontal");
+            var vertical = _rb.velocity.y;
+            if (Input.GetButtonDown("Fire1") && _isGrounded)
+            {
+                _jumpEndTime = Time.time + _jumpDuration;
+            }
 
-    void OnDrawGizmos()
-    {
+            if (Input.GetButton("Fire1") && _jumpEndTime > Time.time) 
+            {
+                vertical = _jumpVelocity;
+            }
+            _rb.velocity = new Vector2(horizontal, vertical);
+        }
+
+        void OnDrawGizmos()
+        {
         
-        float bottomY = _spriteRenderer.bounds.extents.y;
-        Vector2 origin = new Vector2(transform.position.x, transform.position.y - bottomY);
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(origin, origin + Vector2.down * 0.1f);
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
+        }
     }
 }
