@@ -697,8 +697,9 @@ GameObject:
   - component: {fileID: 1431144723}
   - component: {fileID: 1431144722}
   - component: {fileID: 1431144724}
+  - component: {fileID: 1431144725}
   m_Layer: 0
-  m_Name: alienPink_front
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,6 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
   _spriteRenderer: {fileID: 1431144720}
+  _horizontal: 0
   _jumpEndTime: 0
   _horizontalVelocity: 3
   _jumpVelocity: 5
@@ -907,4 +909,24 @@ MonoBehaviour:
   _groundedRayDistance: 0.1
   _isGrounded: 0
   _jumpSprite: {fileID: 21300000, guid: e544b77da07d2db4c85c03577b115654, type: 3}
-  _idleSprite: {fileID: 21300000, guid: d58f06190c3f24e4cb5493588cc92c04, type: 3}
+  _defaultSprite: {fileID: 0}
+--- !u!95 &1431144725
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431144719}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17e6d529233bae946b89dbbd404ff867, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
