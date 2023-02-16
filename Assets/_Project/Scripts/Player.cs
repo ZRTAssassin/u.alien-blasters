@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace _Project.Scripts
@@ -7,10 +8,11 @@ namespace _Project.Scripts
     {
         [SerializeField] Rigidbody2D _rb;
         [SerializeField] SpriteRenderer _spriteRenderer;
-        
+        [SerializeField] Animator _animator;
 
-        [Header("Input setup"), Space(5)]
-        [SerializeField] float _horizontal;
+
+        [Header("Input setup"), Space(5)] [SerializeField]
+        float _horizontal;
 
 
         [Header("Jump setup"), Space(5)] [SerializeField]
@@ -27,12 +29,19 @@ namespace _Project.Scripts
 
         [SerializeField] Sprite _defaultSprite;
 
+        #region AnimatorStrings
+
+        static readonly int Grounded = Animator.StringToHash("IsGrounded");
+
+        #endregion
+
 
         public bool IsGrounded => _isGrounded;
 
         void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _animator = GetComponent<Animator>();
             _defaultSprite = _spriteRenderer.sprite;
         }
 
@@ -75,12 +84,12 @@ namespace _Project.Scripts
 
         void UpdateSprite()
         {
-            _spriteRenderer.sprite = _isGrounded ? _defaultSprite : _jumpSprite;
+            _animator.SetBool(Grounded, _isGrounded);
+            _animator.SetFloat("HorizontalSpeed", Mathf.Abs(_horizontal));
             if (_horizontal > 0)
                 _spriteRenderer.flipX = false;
             else if (_horizontal < 0)
                 _spriteRenderer.flipX = true;
-
         }
 
         void OnDrawGizmos()
