@@ -23,6 +23,7 @@ namespace _Project.Scripts
         [SerializeField] float _jumpDuration = 0.25f;
         [SerializeField] float _groundedRayDistance = 0.1f;
         [SerializeField] bool _isGrounded;
+        [SerializeField] LayerMask _layerMask;
 
         [Header("Sprite Setup"), Space(5)] [SerializeField]
         Sprite _jumpSprite;
@@ -56,7 +57,7 @@ namespace _Project.Scripts
         void Update()
         {
             Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
-            var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance);
+            var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
             {
                 _isGrounded = true;
