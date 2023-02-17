@@ -31,7 +31,8 @@ namespace _Project.Scripts
 
         #region AnimatorStrings
 
-        static readonly int Grounded = Animator.StringToHash("IsGrounded");
+        static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
+        static readonly int AnimHorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
 
         #endregion
 
@@ -84,8 +85,8 @@ namespace _Project.Scripts
 
         void UpdateSprite()
         {
-            _animator.SetBool(Grounded, _isGrounded);
-            _animator.SetFloat("HorizontalSpeed", Mathf.Abs(_horizontal));
+            _animator.SetBool(AnimIsGrounded, _isGrounded);
+            _animator.SetFloat(AnimHorizontalSpeed, Mathf.Abs(_horizontal));
             if (_horizontal > 0)
                 _spriteRenderer.flipX = false;
             else if (_horizontal < 0)
