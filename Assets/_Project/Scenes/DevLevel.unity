@@ -808,6 +808,7 @@ MonoBehaviour:
   _rb: {fileID: 0}
   _spriteRenderer: {fileID: 1431144720}
   _animator: {fileID: 0}
+  _footOffset: 0.35
   _horizontal: 0
   _jumpEndTime: 0
   _horizontalVelocity: 3
@@ -818,8 +819,6 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 55
-  _jumpSprite: {fileID: 21300000, guid: e544b77da07d2db4c85c03577b115654, type: 3}
-  _defaultSprite: {fileID: 0}
 --- !u!95 &1431144725
 Animator:
   serializedVersion: 4

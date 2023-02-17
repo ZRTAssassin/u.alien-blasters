@@ -6,9 +6,13 @@ namespace _Project.Scripts
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] Rigidbody2D _rb;
+        [Header("Debug Setup"), Space(5)] [SerializeField]
+        Rigidbody2D _rb;
+
         [SerializeField] SpriteRenderer _spriteRenderer;
         [SerializeField] Animator _animator;
+
+        [Space(5)] [SerializeField] float _footOffset = 0.5f;
 
 
         [Header("Input setup"), Space(5)] [SerializeField]
@@ -25,11 +29,6 @@ namespace _Project.Scripts
         [SerializeField] bool _isGrounded;
         [SerializeField] LayerMask _layerMask;
 
-        [Header("Sprite Setup"), Space(5)] [SerializeField]
-        Sprite _jumpSprite;
-
-        [SerializeField] Sprite _defaultSprite;
-
         #region AnimatorStrings
 
         static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
@@ -44,7 +43,6 @@ namespace _Project.Scripts
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
-            _defaultSprite = _spriteRenderer.sprite;
         }
 
         // Start is called before the first frame update
@@ -96,9 +94,21 @@ namespace _Project.Scripts
 
         void OnDrawGizmos()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
+            var spriteRenderer = GetComponent<SpriteRenderer>();
             Gizmos.color = Color.red;
+            
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.extents.y);
+            Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
+            
+            //Draw Left Foot
+            
+            origin = new Vector2(transform.position.x - _footOffset,
+                transform.position.y - spriteRenderer.bounds.extents.y);
+            Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
+            
+            // Draw Right Food
+            origin = new Vector2(transform.position.x + _footOffset,
+                transform.position.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
         }
     }
