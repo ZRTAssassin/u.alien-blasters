@@ -11,6 +11,7 @@ namespace _Project.Scripts
 
         [SerializeField] SpriteRenderer _spriteRenderer;
         [SerializeField] Animator _animator;
+        [SerializeField] AudioSource _audioSource;
 
         [Space(5)] [SerializeField] float _footOffset = 0.5f;
 
@@ -18,6 +19,13 @@ namespace _Project.Scripts
         [Header("Input setup"), Space(5)] [SerializeField]
         float _horizontal;
 
+        #region AnimatorStrings
+
+        static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
+        static readonly int AnimHorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
+
+        #endregion
+        
 
         #region Jump Setup
         [Header("Jump setup"), Space(5)] [SerializeField]
@@ -35,20 +43,13 @@ namespace _Project.Scripts
         #endregion
         
 
-        #region AnimatorStrings
-
-        static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
-        static readonly int AnimHorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
-
-        #endregion
-
-
         public bool IsGrounded => _isGrounded;
 
         void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         // Start is called before the first frame update
@@ -68,6 +69,7 @@ namespace _Project.Scripts
             {
                 _jumpEndTime = Time.time + _jumpDuration;
                 _jumpsRemaining--;
+                _audioSource.Play();
             }
 
             if (Input.GetButton("Fire1") && _jumpEndTime > Time.time)
