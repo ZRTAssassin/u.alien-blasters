@@ -19,6 +19,7 @@ namespace _Project.Scripts
         float _horizontal;
 
 
+        #region Jump Setup
         [Header("Jump setup"), Space(5)] [SerializeField]
         float _jumpEndTime;
 
@@ -28,6 +29,11 @@ namespace _Project.Scripts
         [SerializeField] float _groundedRayDistance = 0.1f;
         [SerializeField] bool _isGrounded;
         [SerializeField] LayerMask _layerMask;
+        [SerializeField] int _jumpsRemaining;
+
+
+        #endregion
+        
 
         #region AnimatorStrings
 
@@ -58,9 +64,10 @@ namespace _Project.Scripts
 
             _horizontal = Input.GetAxis("Horizontal");
             var vertical = _rb.velocity.y;
-            if (Input.GetButtonDown("Fire1") && _isGrounded)
+            if (Input.GetButtonDown("Fire1") && _jumpsRemaining > 0)
             {
                 _jumpEndTime = Time.time + _jumpDuration;
+                _jumpsRemaining--;
             }
 
             if (Input.GetButton("Fire1") && _jumpEndTime > Time.time)
@@ -94,6 +101,10 @@ namespace _Project.Scripts
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
                 _isGrounded = true;
+            if (_isGrounded && _rb.velocity.y <= 0)
+            {
+                _jumpsRemaining = 2;
+            }
         }
 
         void UpdateSprite()
