@@ -54,16 +54,7 @@ namespace _Project.Scripts
         // Update is called once per frame
         void Update()
         {
-            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
-            var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
-            if (hit.collider)
-            {
-                _isGrounded = true;
-            }
-            else
-            {
-                _isGrounded = false;
-            }
+            UpdateGrounding();
 
             _horizontal = Input.GetAxis("Horizontal");
             var vertical = _rb.velocity.y;
@@ -79,7 +70,30 @@ namespace _Project.Scripts
 
             _horizontal *= _horizontalVelocity;
             _rb.velocity = new Vector2(_horizontal, vertical);
+
             UpdateSprite();
+        }
+
+        void UpdateGrounding()
+        {
+            _isGrounded = false;
+
+            //check center
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
+            var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
+            if (hit.collider)
+                _isGrounded = true;
+            //check left
+            origin = new Vector2(transform.position.x - _footOffset, transform.position.y - _spriteRenderer.bounds.extents.y);
+            hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
+            if (hit.collider)
+                _isGrounded = true;
+            
+            //check right
+            origin = new Vector2(transform.position.x + _footOffset, transform.position.y - _spriteRenderer.bounds.extents.y);
+            hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
+            if (hit.collider)
+                _isGrounded = true;
         }
 
         void UpdateSprite()
@@ -96,16 +110,16 @@ namespace _Project.Scripts
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             Gizmos.color = Color.red;
-            
+
             Vector2 origin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
-            
+
             //Draw Left Foot
-            
+
             origin = new Vector2(transform.position.x - _footOffset,
                 transform.position.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
-            
+
             // Draw Right Food
             origin = new Vector2(transform.position.x + _footOffset,
                 transform.position.y - spriteRenderer.bounds.extents.y);
