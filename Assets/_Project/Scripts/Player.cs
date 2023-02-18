@@ -69,6 +69,9 @@ namespace _Project.Scripts
             {
                 _jumpEndTime = Time.time + _jumpDuration;
                 _jumpsRemaining--;
+
+                _audioSource.pitch = (_jumpsRemaining) > 0 ? 1 : 0.8f;
+                
                 _audioSource.Play();
             }
 
