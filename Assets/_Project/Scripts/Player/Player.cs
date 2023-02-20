@@ -82,19 +82,20 @@ namespace _Project.Scripts.Player
         {
             _isGrounded = false;
 
+            var transformPosition = transform.position;
             //check center
-            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
+            Vector2 origin = new Vector2(transformPosition.x, transformPosition.y - _spriteRenderer.bounds.extents.y);
             var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
                 _isGrounded = true;
             //check left
-            origin = new Vector2(transform.position.x - _footOffset, transform.position.y - _spriteRenderer.bounds.extents.y);
+            origin = new Vector2(transform.position.x - _footOffset, transformPosition.y - _spriteRenderer.bounds.extents.y);
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
                 _isGrounded = true;
             
             //check right
-            origin = new Vector2(transform.position.x + _footOffset, transform.position.y - _spriteRenderer.bounds.extents.y);
+            origin = new Vector2(transform.position.x + _footOffset, transformPosition.y - _spriteRenderer.bounds.extents.y);
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
                 _isGrounded = true;
@@ -118,19 +119,20 @@ namespace _Project.Scripts.Player
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
             Gizmos.color = Color.red;
+            var transformPosition = transform.position;
 
-            Vector2 origin = new Vector2(transform.position.x, transform.position.y - spriteRenderer.bounds.extents.y);
+            Vector2 origin = new Vector2(transformPosition.x, transformPosition.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
 
             //Draw Left Foot
 
-            origin = new Vector2(transform.position.x - _footOffset,
-                transform.position.y - spriteRenderer.bounds.extents.y);
+            origin = new Vector2(transformPosition.x - _footOffset,
+                transformPosition.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
 
             // Draw Right Food
-            origin = new Vector2(transform.position.x + _footOffset,
-                transform.position.y - spriteRenderer.bounds.extents.y);
+            origin = new Vector2(transformPosition.x + _footOffset,
+                transformPosition.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
         }
     }
