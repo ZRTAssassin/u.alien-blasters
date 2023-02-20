@@ -6,7 +6,6 @@ namespace _Project.Scripts.Player
     {
         [Header("Debug Setup"), Space(5)] [SerializeField]
         Rigidbody2D _rb;
-
         [SerializeField] SpriteRenderer _spriteRenderer;
         [SerializeField] Animator _animator;
         [SerializeField] AudioSource _audioSource;
@@ -34,8 +33,8 @@ namespace _Project.Scripts.Player
         [SerializeField] float _jumpDuration = 0.25f;
         [SerializeField] float _groundedRayDistance = 0.1f;
         [SerializeField] bool _isGrounded;
-        [SerializeField] LayerMask _layerMask;
         [SerializeField] int _jumpsRemaining;
+        [SerializeField] LayerMask _layerMask;
 
 
         #endregion
@@ -48,11 +47,6 @@ namespace _Project.Scripts.Player
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _audioSource = GetComponent<AudioSource>();
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
             _rb = GetComponent<Rigidbody2D>();
         }
 
