@@ -1,19 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Water : MonoBehaviour
+namespace _Project.Scripts
 {
-    [SerializeField] AudioSource _audioSource;
-
-    void Awake()
+    public class Water : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] AudioSource _audioSource;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        _audioSource.Play();
+        void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_audioSource != null)
+            {
+                _audioSource.Play();
+            }
+        }
     }
 }

@@ -1,16 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Spikes : MonoBehaviour
+namespace _Project.Scripts
 {
-    void OnCollisionEnter2D(Collision2D other)
+    public class Spikes : MonoBehaviour
     {
-        if (other.collider.CompareTag("Player"))
+        void OnCollisionEnter2D(Collision2D other)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (other.collider.CompareTag("Player"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
     }
 }

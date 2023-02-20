@@ -1357,7 +1357,7 @@ MonoBehaviour:
   _footOffset: 0.35
   _horizontal: 0
   _jumpEndTime: 0
-  _horizontalVelocity: 3
+  _horizontalVelocity: 5
   _jumpVelocity: 5
   _jumpDuration: 0.25
   _groundedRayDistance: 0.1
