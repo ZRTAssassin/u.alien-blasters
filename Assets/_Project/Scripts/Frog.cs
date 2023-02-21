@@ -6,6 +6,7 @@ namespace _Project.Scripts
     {
         [SerializeField] Rigidbody2D _rb;
         [SerializeField] SpriteRenderer _spriteRenderer;
+        [SerializeField] AudioSource _audioSource;
 
         [Header("Jump Setup"), Space(5)] [SerializeField]
         float _jumpDelay = 3.0f;
@@ -20,6 +21,7 @@ namespace _Project.Scripts
 
         void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
             _rb = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _defaultSprite = _spriteRenderer.sprite;
@@ -45,6 +47,7 @@ namespace _Project.Scripts
         void OnCollisionEnter2D(Collision2D other)
         {
             _spriteRenderer.sprite = _defaultSprite;
+            _audioSource.Play();
         }
     }
 }
