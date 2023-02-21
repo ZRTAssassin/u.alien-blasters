@@ -6,11 +6,15 @@ namespace _Project.Scripts
     {
         [SerializeField] Rigidbody2D _rb;
         [SerializeField] SpriteRenderer _spriteRenderer;
-        [SerializeField] float _jumpDelay = 3.0f;
+
+        [Header("Jump Setup"), Space(5)] [SerializeField]
+        float _jumpDelay = 3.0f;
+
         [SerializeField] Vector2 _jumpForce;
-    
-        [Header("Sprite Setup"), Space(5)]
-        Sprite _defaultSprite;
+        [SerializeField] int _maxJumpsBeforeSwapping = 1;
+        [SerializeField] int _jumpsRemaining;
+
+        [Header("Sprite Setup"), Space(5)] Sprite _defaultSprite;
         [SerializeField] Sprite _jumpSprite;
 
 
@@ -20,13 +24,21 @@ namespace _Project.Scripts
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _defaultSprite = _spriteRenderer.sprite;
             InvokeRepeating(nameof(Jump), _jumpDelay, _jumpDelay);
+            _jumpsRemaining = _maxJumpsBeforeSwapping;
         }
 
         void Jump()
         {
+
+            if (_jumpsRemaining <= 0)
+            {
+                _jumpsRemaining = _maxJumpsBeforeSwapping;
+                _jumpForce *= new Vector2(-1, 1);
+                
+            }
+            _jumpsRemaining--;
             _rb.AddForce(_jumpForce);
-            _jumpForce *= new Vector2(-1, 1);
-            _spriteRenderer.flipX = !_spriteRenderer.flipX;
+            _spriteRenderer.flipX = _jumpForce.x > 0;
             _spriteRenderer.sprite = _jumpSprite;
         }
 
