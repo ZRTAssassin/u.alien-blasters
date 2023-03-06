@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1198509638}
     m_Modifications:
-    - target: {fileID: 8514669219068373194, guid: a488ea48d6081df409aa902b5ac5db08, type: 3}
-      propertyPath: m_Name
-      value: Water__Snow
-      objectReference: {fileID: 0}
     - target: {fileID: 8514669219068373192, guid: a488ea48d6081df409aa902b5ac5db08, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -178,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 8514669219068373192, guid: a488ea48d6081df409aa902b5ac5db08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514669219068373194, guid: a488ea48d6081df409aa902b5ac5db08, type: 3}
+      propertyPath: m_Name
+      value: Water__Snow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -686,8 +686,9 @@ MonoBehaviour:
   _audioSource: {fileID: 0}
   _footOffset: 0.35
   _horizontal: 0
+  _maxHorizontalSpeed: 5
+  _acceleration: 20
   _jumpEndTime: 0
-  _horizontalVelocity: 5
   _jumpVelocity: 5
   _jumpDuration: 0.25
   _groundedRayDistance: 0.1
