@@ -20,7 +20,9 @@ namespace _Project.Scripts.Player
         [Header("Movement setup"), Space(5)] [SerializeField]
         float _maxHorizontalSpeed = 5.0f;
 
-        [SerializeField] float _acceleration = 10;
+        [SerializeField] float _groundAcceleration = 10;
+        [SerializeField] float _snowAcceleration = 1;
+        [SerializeField] bool _isOnSnow;
 
         #region AnimatorStrings
 
@@ -78,7 +80,8 @@ namespace _Project.Scripts.Player
             }
 
             var desiredHorizontal = horizontalInput * _maxHorizontalSpeed;
-            _horizontal = Mathf.Lerp(_horizontal, desiredHorizontal, Time.deltaTime * _acceleration);
+            var acceleration = (_isOnSnow) ? _snowAcceleration : _groundAcceleration;
+            _horizontal = Mathf.Lerp(_horizontal, desiredHorizontal, Time.deltaTime * acceleration);
             _rb.velocity = new Vector2(_horizontal, vertical);
             UpdateSprite();
         }
@@ -86,26 +89,38 @@ namespace _Project.Scripts.Player
         void UpdateGrounding()
         {
             _isGrounded = false;
+            _isOnSnow = false;
 
             var transformPosition = transform.position;
             //check center
             Vector2 origin = new Vector2(transformPosition.x, transformPosition.y - _spriteRenderer.bounds.extents.y);
             var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
+            {
                 _isGrounded = true;
+                _isOnSnow = hit.collider.CompareTag("Snow");
+            }
+
             //check left
             origin = new Vector2(transform.position.x - _footOffset,
                 transformPosition.y - _spriteRenderer.bounds.extents.y);
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
+            {
                 _isGrounded = true;
+                _isOnSnow = hit.collider.CompareTag("Snow");
+            }
 
             //check right
             origin = new Vector2(transform.position.x + _footOffset,
                 transformPosition.y - _spriteRenderer.bounds.extents.y);
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
+            {
                 _isGrounded = true;
+                _isOnSnow = hit.collider.CompareTag("Snow");
+            }
+
             if (_isGrounded && _rb.velocity.y <= 0)
             {
                 _jumpsRemaining = 2;

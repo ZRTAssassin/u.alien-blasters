@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5285007584123951432, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5285007584123951432, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snow Platform 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5285007584123951435, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
+      propertyPath: m_TagString
+      value: Snow
+      objectReference: {fileID: 0}
     - target: {fileID: 5285007584162597474, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snow Right
       objectReference: {fileID: 0}
+    - target: {fileID: 5285007584162597484, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
+      propertyPath: m_TagString
+      value: Snow
+      objectReference: {fileID: 0}
     - target: {fileID: 5285007585778457010, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -75,6 +83,10 @@ PrefabInstance:
     - target: {fileID: 5285007585778457020, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
       propertyPath: m_Name
       value: Snow Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5285007585778457020, guid: 8f4e3e8bc288a6d479facb268d4f27d8, type: 3}
+      propertyPath: m_TagString
+      value: Snow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

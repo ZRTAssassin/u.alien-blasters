@@ -687,7 +687,9 @@ MonoBehaviour:
   _footOffset: 0.35
   _horizontal: 0
   _maxHorizontalSpeed: 5
-  _acceleration: 20
+  _groundAcceleration: 10
+  _snowAcceleration: 1
+  _isOnSnow: 0
   _jumpEndTime: 0
   _jumpVelocity: 5
   _jumpDuration: 0.25
@@ -805,7 +807,7 @@ GameObject:
   - component: {fileID: 718574849}
   m_Layer: 0
   m_Name: Snow Mid
-  m_TagString: Untagged
+  m_TagString: Snow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -935,7 +937,7 @@ GameObject:
   - component: {fileID: 800596115}
   m_Layer: 0
   m_Name: Snow Mid
-  m_TagString: Untagged
+  m_TagString: Snow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2201,6 +2203,10 @@ PrefabInstance:
     - target: {fileID: 1794428495313265343, guid: e8fc54eb2a72a104d89a2329a432599f, type: 3}
       propertyPath: m_Name
       value: Snow Platform 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794428495313265343, guid: e8fc54eb2a72a104d89a2329a432599f, type: 3}
+      propertyPath: m_TagString
+      value: Snow
       objectReference: {fileID: 0}
     - target: {fileID: 1794428496732856902, guid: e8fc54eb2a72a104d89a2329a432599f, type: 3}
       propertyPath: m_Sprite
