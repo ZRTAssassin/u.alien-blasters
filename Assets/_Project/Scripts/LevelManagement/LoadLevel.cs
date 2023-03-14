@@ -6,13 +6,13 @@ namespace _Project.Scripts.LevelManagement
 {
     public class LoadLevel : MonoBehaviour
     {
-        [SerializeField] string _levelName;
+        [SerializeField] int _buildIndex;
 
         void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.CompareTag("Player"))
             {
-                SceneManager.LoadScene(_levelName);
+                SceneManager.LoadScene(_buildIndex);
             }
         }
     }
