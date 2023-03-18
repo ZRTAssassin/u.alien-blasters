@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,9 +19,11 @@ namespace _Project.Scripts.Player
 
         [Header("Input setup"), Space(5)] [SerializeField]
         float _horizontal;
+        [SerializeField] float horizontalInput = 0f;
 
         [Header("Movement setup"), Space(5)] [SerializeField]
         float _maxHorizontalSpeed = 5.0f;
+
 
         [SerializeField] float _groundAcceleration = 10;
         [SerializeField] float _snowAcceleration = 1;
@@ -45,10 +48,17 @@ namespace _Project.Scripts.Player
         [SerializeField] bool _isGrounded;
         [SerializeField] int _jumpsRemaining;
         [SerializeField] LayerMask _layerMask;
+        
 
         #endregion
 
 
+        #region Inventory System
+        
+        [SerializeField] int _coins;
+
+        #endregion
+        
         public bool IsGrounded => _isGrounded;
 
         void Awake()
@@ -65,7 +75,7 @@ namespace _Project.Scripts.Player
         {
             UpdateGrounding();
 
-            var horizontalInput = _playerInput.actions["Move"].ReadValue<Vector2>().x;
+            horizontalInput = _playerInput.actions["Move"].ReadValue<Vector2>().x;
             var vertical = _rb.velocity.y;
             if (_playerInput.actions["Jump"].WasPerformedThisFrame() && _jumpsRemaining > 0)
             {
@@ -132,7 +142,7 @@ namespace _Project.Scripts.Player
         void UpdateSprite()
         {
             _animator.SetBool(AnimIsGrounded, _isGrounded);
-            _animator.SetFloat(AnimHorizontalSpeed, Mathf.Abs(_horizontal));
+            _animator.SetFloat(AnimHorizontalSpeed, Math.Abs(_horizontal));
             if (_horizontal > 0)
                 _spriteRenderer.flipX = false;
             else if (_horizontal < 0)
@@ -158,6 +168,11 @@ namespace _Project.Scripts.Player
             origin = new Vector2(transformPosition.x + _footOffset,
                 transformPosition.y - spriteRenderer.bounds.extents.y);
             Gizmos.DrawLine(origin, origin + Vector2.down * _groundedRayDistance);
+        }
+
+        public void AddPoint()
+        {
+            _coins++;
         }
     }
 }
