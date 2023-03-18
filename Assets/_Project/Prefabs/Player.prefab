@@ -373,6 +373,7 @@ MonoBehaviour:
   _playerInput: {fileID: 0}
   _footOffset: 0.35
   _horizontal: 0
+  horizontalInput: 0
   _maxHorizontalSpeed: 5
   _groundAcceleration: 10
   _snowAcceleration: 1
@@ -386,6 +387,18 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 55
+  _coins: 0
+  _coinSounds:
+  - {fileID: 8300000, guid: c62a790de962ca0429b60c18ce289569, type: 3}
+  - {fileID: 8300000, guid: c3f9fd984383add4b89e0e041e8b3f60, type: 3}
+  - {fileID: 8300000, guid: 0330f0164e6d6284d8dca03ca838beaa, type: 3}
+  - {fileID: 8300000, guid: c9a4f78c8a1b30049ac02920de49afd5, type: 3}
+  - {fileID: 8300000, guid: 3d48f21e3bdb26f4391ddc8147552fe5, type: 3}
+  - {fileID: 8300000, guid: d10000cb7596e8741936f797114ce5a4, type: 3}
+  - {fileID: 8300000, guid: 7ea782f5bef05cb4aa4a10ca3feaff29, type: 3}
+  - {fileID: 8300000, guid: d23f57ffc8cfca04190db80277759064, type: 3}
+  - {fileID: 8300000, guid: f719c26d654062346af22a108a829afc, type: 3}
+  - {fileID: 8300000, guid: 9e2828ff44671b74f86a1db1b7f977f2, type: 3}
 --- !u!95 &36773516923863484
 Animator:
   serializedVersion: 5

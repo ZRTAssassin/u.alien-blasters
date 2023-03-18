@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Player
 {
@@ -19,6 +21,7 @@ namespace _Project.Scripts.Player
 
         [Header("Input setup"), Space(5)] [SerializeField]
         float _horizontal;
+
         [SerializeField] float horizontalInput = 0f;
 
         [Header("Movement setup"), Space(5)] [SerializeField]
@@ -48,17 +51,19 @@ namespace _Project.Scripts.Player
         [SerializeField] bool _isGrounded;
         [SerializeField] int _jumpsRemaining;
         [SerializeField] LayerMask _layerMask;
-        
 
         #endregion
 
 
-        #region Inventory System
-        
-        [SerializeField] int _coins;
+        #region Coin System
+
+        [Header("Coin setup"), Space(5)] [SerializeField]
+        int _coins;
+
+        [SerializeField] List<AudioClip> _coinSounds = new List<AudioClip>();
 
         #endregion
-        
+
         public bool IsGrounded => _isGrounded;
 
         void Awake()
@@ -103,7 +108,7 @@ namespace _Project.Scripts.Player
         {
             _isGrounded = false;
             _isOnSnow = false;
-            
+
             //check center
             Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
             var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
@@ -173,6 +178,9 @@ namespace _Project.Scripts.Player
         public void AddPoint()
         {
             _coins++;
+            var number = Random.Range(0, _coinSounds.Count - 1);
+            var soundClip = _coinSounds[number];
+            _audioSource.PlayOneShot(soundClip);
         }
     }
 }
