@@ -75,7 +75,7 @@ namespace _Project.Scripts.Player
             _rb = GetComponent<Rigidbody2D>();
             _playerInput = GetComponent<PlayerInput>();
             
-            FindObjectOfType<PlayerPanel>().Bind(this);
+            FindObjectOfType<PLayerCanvas>().Bind(this);
         }
 
         // Update is called once per frame
