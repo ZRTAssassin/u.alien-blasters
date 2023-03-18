@@ -67,7 +67,7 @@ namespace _Project.Scripts.Player
 
             var horizontalInput = _playerInput.actions["Move"].ReadValue<Vector2>().x;
             var vertical = _rb.velocity.y;
-            if (_playerInput.actions["Fire"].WasPerformedThisFrame() && _jumpsRemaining > 0)
+            if (_playerInput.actions["Jump"].WasPerformedThisFrame() && _jumpsRemaining > 0)
             {
                 _jumpEndTime = Time.time + _jumpDuration;
                 _jumpsRemaining--;
@@ -77,7 +77,7 @@ namespace _Project.Scripts.Player
                 _audioSource.Play();
             }
 
-            if (_playerInput.actions["Fire"].ReadValue<float>() > 0.5f && _jumpEndTime > Time.time)
+            if (_playerInput.actions["Jump"].ReadValue<float>() > 0.5f && _jumpEndTime > Time.time)
             {
                 vertical = _jumpVelocity;
             }
@@ -93,10 +93,9 @@ namespace _Project.Scripts.Player
         {
             _isGrounded = false;
             _isOnSnow = false;
-
-            var transformPosition = transform.position;
+            
             //check center
-            Vector2 origin = new Vector2(transformPosition.x, transformPosition.y - _spriteRenderer.bounds.extents.y);
+            Vector2 origin = new Vector2(transform.position.x, transform.position.y - _spriteRenderer.bounds.extents.y);
             var hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
             {
@@ -106,7 +105,7 @@ namespace _Project.Scripts.Player
 
             //check left
             origin = new Vector2(transform.position.x - _footOffset,
-                transformPosition.y - _spriteRenderer.bounds.extents.y);
+                transform.position.y - _spriteRenderer.bounds.extents.y);
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
             {
@@ -116,7 +115,7 @@ namespace _Project.Scripts.Player
 
             //check right
             origin = new Vector2(transform.position.x + _footOffset,
-                transformPosition.y - _spriteRenderer.bounds.extents.y);
+                transform.position.y - _spriteRenderer.bounds.extents.y);
             hit = Physics2D.Raycast(origin, Vector2.down, _groundedRayDistance, _layerMask);
             if (hit.collider)
             {
