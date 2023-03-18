@@ -180,7 +180,8 @@ namespace _Project.Scripts.Player
             _coins++;
             var number = Random.Range(0, _coinSounds.Count - 1);
             var soundClip = _coinSounds[number];
-            _audioSource.PlayOneShot(soundClip);
+            if (soundClip != null)
+                _audioSource.PlayOneShot(soundClip);
         }
     }
 }
