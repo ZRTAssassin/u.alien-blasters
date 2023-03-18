@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4891742083957341125}
   - component: {fileID: 4891742083957341146}
+  - component: {fileID: 9078410722609313438}
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -5514138476926248915, guid: 2543e1e9e7695ee4abe4fbc37dc6bfa9, type: 3}
-  m_PlayerPrefab: {fileID: 36773516923863462, guid: 8e6bcd75a104ed4489771490b589bbcf, type: 3}
+  m_PlayerPrefab: {fileID: 0}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -76,3 +77,15 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &9078410722609313438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891742083957341147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd5c254a71eb1f41b6b015434ca3c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
