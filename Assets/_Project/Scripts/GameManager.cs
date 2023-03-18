@@ -46,7 +46,7 @@ namespace _Project.Scripts
 
             return _playerDatas[playerIndex];
         }
-
+        [SerializeField]
         List<PlayerData> _playerDatas = new List<PlayerData>();
     }
 }
