@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Player
 {
@@ -10,6 +11,7 @@ namespace _Project.Scripts.Player
         [SerializeField] SpriteRenderer _spriteRenderer;
         [SerializeField] Animator _animator;
         [SerializeField] AudioSource _audioSource;
+        [SerializeField] PlayerInput _playerInput;
 
         [Space(5)] [SerializeField] float _footOffset = 0.5f;
 
@@ -55,6 +57,7 @@ namespace _Project.Scripts.Player
             _animator = GetComponent<Animator>();
             _audioSource = GetComponent<AudioSource>();
             _rb = GetComponent<Rigidbody2D>();
+            _playerInput = GetComponent<PlayerInput>();
         }
 
         // Update is called once per frame
@@ -62,9 +65,9 @@ namespace _Project.Scripts.Player
         {
             UpdateGrounding();
 
-            var horizontalInput = Input.GetAxis("Horizontal");
+            var horizontalInput = _playerInput.actions["Move"].ReadValue<Vector2>().x;
             var vertical = _rb.velocity.y;
-            if (Input.GetButtonDown("Fire1") && _jumpsRemaining > 0)
+            if (_playerInput.actions["Fire"].WasPerformedThisFrame() && _jumpsRemaining > 0)
             {
                 _jumpEndTime = Time.time + _jumpDuration;
                 _jumpsRemaining--;
@@ -74,7 +77,7 @@ namespace _Project.Scripts.Player
                 _audioSource.Play();
             }
 
-            if (Input.GetButton("Fire1") && _jumpEndTime > Time.time)
+            if (_playerInput.actions["Fire"].ReadValue<float>() > 0.5f && _jumpEndTime > Time.time)
             {
                 vertical = _jumpVelocity;
             }
