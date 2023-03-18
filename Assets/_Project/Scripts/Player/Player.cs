@@ -65,6 +65,7 @@ namespace _Project.Scripts.Player
         #endregion
 
         public bool IsGrounded => _isGrounded;
+        public int Coins => _coins;
 
         void Awake()
         {
@@ -73,6 +74,8 @@ namespace _Project.Scripts.Player
             _audioSource = GetComponent<AudioSource>();
             _rb = GetComponent<Rigidbody2D>();
             _playerInput = GetComponent<PlayerInput>();
+            
+            FindObjectOfType<PlayerPanel>().Bind(this);
         }
 
         // Update is called once per frame
