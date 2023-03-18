@@ -2219,6 +2219,10 @@ PrefabInstance:
       propertyPath: m_PlayerPrefab
       value: 
       objectReference: {fileID: 1556976575}
+    - target: {fileID: 4891742083957341146, guid: aca07377a6bb5af48aaf8cefb587aa2d, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4891742083957341147, guid: aca07377a6bb5af48aaf8cefb587aa2d, type: 3}
       propertyPath: m_Name
       value: PlayerInputManager & GameManager

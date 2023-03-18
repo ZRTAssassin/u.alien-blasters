@@ -195,6 +195,11 @@ namespace _Project.Scripts.Player
             if (soundClip != null)
                 _audioSource.PlayOneShot(soundClip);
         }
+
+        public void Bind(PlayerData playerData)
+        {
+            _playerData = playerData;
+        }
     }
 }
 
