@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace _Project.Scripts.Player
 {
-    public class PLayerCanvas : MonoBehaviour
+    public class PlayerCanvas : MonoBehaviour
     {
         [SerializeField] PlayerPanel[] _playerPanels;
 

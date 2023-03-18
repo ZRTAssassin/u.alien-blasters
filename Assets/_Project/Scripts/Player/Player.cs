@@ -58,14 +58,23 @@ namespace _Project.Scripts.Player
         #region Coin System
 
         [Header("Coin setup"), Space(5)] [SerializeField]
-        int _coins;
-
-        [SerializeField] List<AudioClip> _coinSounds = new List<AudioClip>();
+        List<AudioClip> _coinSounds = new List<AudioClip>();
 
         #endregion
 
         public bool IsGrounded => _isGrounded;
-        public int Coins => _coins;
+
+        public int Coins
+        {
+            get => _playerData.Coins;
+            private set => _playerData.Coins = value;
+        }
+
+        #region Data Region
+
+        PlayerData _playerData = new PlayerData();
+
+        #endregion
 
         void Awake()
         {
@@ -74,8 +83,8 @@ namespace _Project.Scripts.Player
             _audioSource = GetComponent<AudioSource>();
             _rb = GetComponent<Rigidbody2D>();
             _playerInput = GetComponent<PlayerInput>();
-            
-            FindObjectOfType<PLayerCanvas>().Bind(this);
+
+            FindObjectOfType<PlayerCanvas>().Bind(this);
         }
 
         // Update is called once per frame
@@ -180,11 +189,17 @@ namespace _Project.Scripts.Player
 
         public void AddPoint()
         {
-            _coins++;
+            Coins++;
             var number = Random.Range(0, _coinSounds.Count - 1);
             var soundClip = _coinSounds[number];
             if (soundClip != null)
                 _audioSource.PlayOneShot(soundClip);
         }
     }
+}
+
+public class PlayerData
+{
+    public int Coins;
+    public int Health;
 }
