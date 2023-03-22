@@ -32,7 +32,6 @@ namespace _Project.Scripts.Player
         [SerializeField] float _groundAcceleration = 10;
         [SerializeField] float _snowAcceleration = 1;
         [SerializeField] bool _isOnSnow;
-        [SerializeField] float _knockback = 300;
 
         #region AnimatorStrings
 
@@ -56,6 +55,13 @@ namespace _Project.Scripts.Player
 
         #endregion
 
+        #region Damage Setup
+
+        [Header("Damage setup"), Space(5)] [SerializeField]
+        float _knockback = 300;
+        [SerializeField] List<AudioClip> _hurtSounds = new List<AudioClip>();
+
+        #endregion
 
         #region Coin System
 
@@ -215,6 +221,11 @@ namespace _Project.Scripts.Player
             }
 
             _rb.AddForce(-hitNormal * _knockback);
+
+            var number = Random.Range(0, _hurtSounds.Count - 1);
+            var soundClip = _hurtSounds[number];
+            if (soundClip != null)
+                _audioSource.PlayOneShot(soundClip);
         }
     }
 }
