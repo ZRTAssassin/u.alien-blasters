@@ -12,7 +12,7 @@ namespace _Project.Scripts
                 var player = other.collider.GetComponent<Player.Player>();
                 if (player)
                 {
-                    player.TakeDamage();
+                    player.TakeDamage(other.contacts[0].normal);
                 }
             }
         }

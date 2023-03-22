@@ -32,6 +32,7 @@ namespace _Project.Scripts.Player
         [SerializeField] float _groundAcceleration = 10;
         [SerializeField] float _snowAcceleration = 1;
         [SerializeField] bool _isOnSnow;
+        [SerializeField] float _knockback = 300;
 
         #region AnimatorStrings
 
@@ -61,15 +62,17 @@ namespace _Project.Scripts.Player
         [Header("Coin setup"), Space(5)] [SerializeField]
         List<AudioClip> _coinSounds = new List<AudioClip>();
 
-        #endregion
-
-        public bool IsGrounded => _isGrounded;
-
         public int Coins
         {
             get => _playerData.Coins;
             private set => _playerData.Coins = value;
         }
+
+        #endregion
+
+
+        public bool IsGrounded => _isGrounded;
+
 
         #region Data Region
 
@@ -202,7 +205,7 @@ namespace _Project.Scripts.Player
             _playerData = playerData;
         }
 
-        public void TakeDamage()
+        public void TakeDamage(Vector2 hitNormal)
         {
             _playerData.Health--;
             if (_playerData.Health <= 0)
@@ -210,6 +213,8 @@ namespace _Project.Scripts.Player
                 SceneManager.LoadScene(0);
                 return;
             }
+
+            _rb.AddForce(-hitNormal * _knockback);
         }
     }
 }
