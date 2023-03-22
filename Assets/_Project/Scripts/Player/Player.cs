@@ -225,7 +225,9 @@ namespace _Project.Scripts.Player
             var number = Random.Range(0, _hurtSounds.Count - 1);
             var soundClip = _hurtSounds[number];
             if (soundClip != null)
+            {
                 _audioSource.PlayOneShot(soundClip);
+            }
         }
     }
 }
