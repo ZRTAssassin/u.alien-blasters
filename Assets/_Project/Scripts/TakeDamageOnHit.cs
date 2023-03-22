@@ -3,13 +3,17 @@ using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts
 {
-    public class Spikes : MonoBehaviour
+    public class TakeDamageOnHit : MonoBehaviour
     {
         void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.CompareTag("Player"))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                var player = other.collider.GetComponent<Player.Player>();
+                if (player)
+                {
+                    player.TakeDamage();
+                }
             }
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Player
@@ -199,6 +200,16 @@ namespace _Project.Scripts.Player
         public void Bind(PlayerData playerData)
         {
             _playerData = playerData;
+        }
+
+        public void TakeDamage()
+        {
+            _playerData.Health--;
+            if (_playerData.Health <= 0)
+            {
+                SceneManager.LoadScene(0);
+                return;
+            }
         }
     }
 }
