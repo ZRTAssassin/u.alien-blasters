@@ -273,7 +273,7 @@ Transform:
   - {fileID: 36773516569667854}
   - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &36773516923863481
 SpriteRenderer:
@@ -387,7 +387,13 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 55
-  _coins: 0
+  _knockback: 300
+  _hurtSounds:
+  - {fileID: 8300000, guid: 5e7173d6cf93f7d4b8c0161ebee04e2d, type: 3}
+  - {fileID: 8300000, guid: 90bc5637c34eb514789c3aa1813c7bbb, type: 3}
+  - {fileID: 8300000, guid: 4a8c128485a794446b8173cef8efdcd6, type: 3}
+  - {fileID: 8300000, guid: 703992ebfad815647b84ace1abae6629, type: 3}
+  - {fileID: 8300000, guid: 20835417f83361444b2dc5d1fe092f77, type: 3}
   _coinSounds:
   - {fileID: 8300000, guid: c62a790de962ca0429b60c18ce289569, type: 3}
   - {fileID: 8300000, guid: c3f9fd984383add4b89e0e041e8b3f60, type: 3}

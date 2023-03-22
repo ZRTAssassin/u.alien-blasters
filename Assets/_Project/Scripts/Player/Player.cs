@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Player
@@ -54,21 +55,30 @@ namespace _Project.Scripts.Player
 
         #endregion
 
+        #region Damage Setup
+
+        [Header("Damage setup"), Space(5)] [SerializeField]
+        float _knockback = 300;
+        [SerializeField] List<AudioClip> _hurtSounds = new List<AudioClip>();
+
+        #endregion
 
         #region Coin System
 
         [Header("Coin setup"), Space(5)] [SerializeField]
         List<AudioClip> _coinSounds = new List<AudioClip>();
 
-        #endregion
-
-        public bool IsGrounded => _isGrounded;
-
         public int Coins
         {
             get => _playerData.Coins;
             private set => _playerData.Coins = value;
         }
+
+        #endregion
+
+
+        public bool IsGrounded => _isGrounded;
+
 
         #region Data Region
 
@@ -199,6 +209,25 @@ namespace _Project.Scripts.Player
         public void Bind(PlayerData playerData)
         {
             _playerData = playerData;
+        }
+
+        public void TakeDamage(Vector2 hitNormal)
+        {
+            _playerData.Health--;
+            if (_playerData.Health <= 0)
+            {
+                SceneManager.LoadScene(0);
+                return;
+            }
+
+            _rb.AddForce(-hitNormal * _knockback);
+
+            var number = Random.Range(0, _hurtSounds.Count - 1);
+            var soundClip = _hurtSounds[number];
+            if (soundClip != null)
+            {
+                _audioSource.PlayOneShot(soundClip);
+            }
         }
     }
 }
