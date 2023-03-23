@@ -83,7 +83,7 @@ namespace _Project.Scripts.Player
         #region Data Region
 
         PlayerData _playerData = new PlayerData();
-
+        public int Health => _playerData.Health;
         #endregion
 
         void Awake()

@@ -790,3 +790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 2190915347889671179}
+  _hearts:
+  - {fileID: 1160305091524530674}
+  - {fileID: 1160305090505577798}
+  - {fileID: 1160305091348155829}
+  - {fileID: 1160305090929649041}
+  - {fileID: 1160305090716191535}
+  - {fileID: 1160305092120676067}
