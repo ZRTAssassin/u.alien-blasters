@@ -13,13 +13,19 @@ namespace _Project.Scripts.Player
         public void Bind(Player player)
         {
             _player = player;
+            _player.CoinsChanged += UpdateCoinsText;
+            UpdateCoinsText();
+        }
+
+        void UpdateCoinsText()
+        {
+            _text.SetText(_player.Coins.ToString());
         }
 
         void Update()
         {
             if (_player != null)
             {
-                _text.SetText(_player.Coins.ToString());
                 for (int i = 0; i < _hearts.Length; i++)
                 {
                     Image heart = _hearts[i];

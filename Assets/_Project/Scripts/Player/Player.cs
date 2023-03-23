@@ -9,6 +9,10 @@ namespace _Project.Scripts.Player
 {
     public class Player : MonoBehaviour
     {
+        #region DebugSetup
+
+        
+
         [Header("Debug Setup"), Space(5)] [SerializeField]
         Rigidbody2D _rb;
 
@@ -18,12 +22,21 @@ namespace _Project.Scripts.Player
         [SerializeField] PlayerInput _playerInput;
 
         [Space(5)] [SerializeField] float _footOffset = 0.5f;
+        #endregion
 
+        #region Input Setup
+
+        
 
         [Header("Input setup"), Space(5)] [SerializeField]
         float _horizontal;
 
         [SerializeField] float horizontalInput = 0f;
+        #endregion
+
+        #region Movement Setup
+
+        
 
         [Header("Movement setup"), Space(5)] [SerializeField]
         float _maxHorizontalSpeed = 5.0f;
@@ -33,6 +46,8 @@ namespace _Project.Scripts.Player
         [SerializeField] float _snowAcceleration = 1;
         [SerializeField] bool _isOnSnow;
 
+        #endregion
+        
         #region AnimatorStrings
 
         static readonly int AnimIsGrounded = Animator.StringToHash("IsGrounded");
@@ -85,6 +100,8 @@ namespace _Project.Scripts.Player
         PlayerData _playerData = new PlayerData();
         public int Health => _playerData.Health;
         #endregion
+
+        public event Action CoinsChanged;
 
         void Awake()
         {
@@ -200,6 +217,7 @@ namespace _Project.Scripts.Player
         public void AddPoint()
         {
             Coins++;
+            CoinsChanged?.Invoke();
             var number = Random.Range(0, _coinSounds.Count - 1);
             var soundClip = _coinSounds[number];
             if (soundClip != null)
@@ -209,6 +227,7 @@ namespace _Project.Scripts.Player
         public void Bind(PlayerData playerData)
         {
             _playerData = playerData;
+            
         }
 
         public void TakeDamage(Vector2 hitNormal)
