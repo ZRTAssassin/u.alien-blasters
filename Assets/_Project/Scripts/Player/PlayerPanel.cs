@@ -16,6 +16,7 @@ namespace _Project.Scripts.Player
             _player.CoinsChanged += UpdateCoinsText;
             _player.HealthChanged += UpdateHealth;
             UpdateCoinsText();
+            UpdateHealth();
         }
 
         void UpdateCoinsText()
