@@ -102,6 +102,7 @@ namespace _Project.Scripts.Player
         #endregion
 
         public event Action CoinsChanged;
+        public event Action HealthChanged;
 
         void Awake()
         {
@@ -233,6 +234,7 @@ namespace _Project.Scripts.Player
         public void TakeDamage(Vector2 hitNormal)
         {
             _playerData.Health--;
+            HealthChanged?.Invoke();
             if (_playerData.Health <= 0)
             {
                 SceneManager.LoadScene(0);
