@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ namespace _Project.Scripts.Player
     {
         [SerializeField] TMP_Text _text;
         [SerializeField] Image[] _hearts;
+        [SerializeField] Image _flashImage;
         Player _player;
 
         public void Bind(Player player)
@@ -31,6 +33,15 @@ namespace _Project.Scripts.Player
                 Image heart = _hearts[i];
                 heart.enabled = i < _player.Health;
             }
+
+            StartCoroutine(Flash());
+        }
+
+        IEnumerator Flash()
+        {
+            _flashImage.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+            _flashImage.enabled = false;
         }
     }
 }

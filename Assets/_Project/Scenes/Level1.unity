@@ -1730,6 +1730,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 203274888403724853, guid: 007101b48e20e7747a2a70482d24112b, type: 3}
   m_PrefabInstance: {fileID: 1859544852}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2021306704 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1219464571, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+  m_PrefabInstance: {fileID: 1044143193156136055}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2101658590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,6 +1966,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1219464571, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219464571, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219464571, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219464571, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1360257735, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2114,6 +2141,14 @@ PrefabInstance:
     - target: {fileID: 1044143193238981013, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
       propertyPath: m_Name
       value: Player Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044143193473210435, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+      propertyPath: _flashImage
+      value: 
+      objectReference: {fileID: 2021306704}
+    - target: {fileID: 1044143193473210437, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1371312987783313550, guid: 7fc1e18314c9a104aab3e7401df675d6, type: 3}
       propertyPath: m_Name
