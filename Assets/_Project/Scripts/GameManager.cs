@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace _Project.Scripts
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] PlayerInputManager _playerInput;
+        [SerializeField] PlayerInputManager _playerInputManager;
+        [SerializeField] List<PlayerData> _playerDatas = new List<PlayerData>();
         public static GameManager Instance { get; private set; }
 
         void Awake()
@@ -22,16 +24,29 @@ namespace _Project.Scripts
                 Destroy(gameObject);
             }
 
-            _playerInput = GetComponent<PlayerInputManager>();
-            _playerInput.onPlayerJoined += HandlePlayerJoined;
+            _playerInputManager = GetComponent<PlayerInputManager>();
+            _playerInputManager.onPlayerJoined += HandlePlayerJoined;
 
+            SceneManager.sceneLoaded += HandleSceneLoaded;
+        }
+
+        void HandleSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            if (arg0.buildIndex == 0)
+            {
+                _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
+            }
+            else
+            {
+                _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersWhenButtonIsPressed;
+            }
         }
 
         void HandlePlayerJoined(PlayerInput playerInput)
         {
             Debug.Log($"{gameObject.name}: HanldePlayerJoined called (). {playerInput}");
             PlayerData playerData = GetPlayerData(playerInput.playerIndex);
-            
+
             var player = playerInput.GetComponent<Player.Player>();
             player.Bind(playerData);
         }
@@ -46,7 +61,5 @@ namespace _Project.Scripts
 
             return _playerDatas[playerIndex];
         }
-        [SerializeField]
-        List<PlayerData> _playerDatas = new List<PlayerData>();
     }
 }
