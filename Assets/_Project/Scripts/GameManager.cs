@@ -61,5 +61,10 @@ namespace _Project.Scripts
 
             return _playerDatas[playerIndex];
         }
+
+        public void NewGame()
+        {
+            Debug.Log("NewGameCalled");
+        }
     }
 }
