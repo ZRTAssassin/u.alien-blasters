@@ -9,7 +9,7 @@ namespace _Project.Scripts
     public class GameManager : MonoBehaviour
     {
         [SerializeField] PlayerInputManager _playerInputManager;
-        [SerializeField] List<PlayerData> _playerDatas = new List<PlayerData>();
+        [SerializeField] GameData _gameData;
         public static GameManager Instance { get; private set; }
 
         void Awake()
@@ -53,18 +53,20 @@ namespace _Project.Scripts
 
         PlayerData GetPlayerData(int playerIndex)
         {
-            if (_playerDatas.Count <= playerIndex)
+            if (_gameData.PlayerDatas.Count <= playerIndex)
             {
                 var playerData = new PlayerData();
-                _playerDatas.Add(playerData);
+                _gameData.PlayerDatas.Add(playerData);
             }
 
-            return _playerDatas[playerIndex];
+            return _gameData.PlayerDatas[playerIndex];
         }
 
         public void NewGame()
         {
             Debug.Log("NewGameCalled");
+            _gameData = new GameData();
+            SceneManager.LoadScene(1);
         }
     }
 }
