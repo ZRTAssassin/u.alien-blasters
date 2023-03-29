@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace _Project.Scripts.Player
-{
+
     public class Player : MonoBehaviour
     {
         #region DebugSetup
@@ -251,4 +250,3 @@ namespace _Project.Scripts.Player
             }
         }
     }
-}
