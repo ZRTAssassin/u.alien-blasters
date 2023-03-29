@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using _Project.Scripts.Player;
 using UnityEngine;
 
 public class Coin : MonoBehaviour

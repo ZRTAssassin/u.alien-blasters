@@ -1,72 +1,100 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-namespace _Project.Scripts
+public class GameManager : MonoBehaviour
 {
-    public class GameManager : MonoBehaviour
+    public static GameManager Instance { get; private set; }
+    public List<string> AllGameNames = new List<string>();
+
+
+    [SerializeField] GameData _gameData;
+
+    PlayerInputManager _playerInputManager;
+
+    void Awake()
     {
-        [SerializeField] PlayerInputManager _playerInputManager;
-        [SerializeField] GameData _gameData;
-        public static GameManager Instance { get; private set; }
-
-        void Awake()
+        if (Instance != null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-
-            _playerInputManager = GetComponent<PlayerInputManager>();
-            _playerInputManager.onPlayerJoined += HandlePlayerJoined;
-
-            SceneManager.sceneLoaded += HandleSceneLoaded;
+            Destroy(gameObject);
+            return;
         }
 
-        void HandleSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        _playerInputManager = GetComponent<PlayerInputManager>();
+        _playerInputManager.onPlayerJoined += HandlePlayerJoined;
+
+        SceneManager.sceneLoaded += HandleSceneLoaded;
+
+        var commaNames = PlayerPrefs.GetString("AllGameNames");
+        Debug.Log(commaNames);
+        AllGameNames = commaNames.Split(",").ToList();
+    }
+
+    void HandleSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.buildIndex == 0)
+            _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
+        else
         {
-            if (arg0.buildIndex == 0)
-            {
-                _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
-            }
-            else
-            {
-                _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersWhenButtonIsPressed;
-            }
+            _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersWhenButtonIsPressed;
+            SaveGame();
+        }
+    }
+
+    void SaveGame()
+    {
+        string text = JsonUtility.ToJson(_gameData);
+        Debug.Log(text);
+
+        if (AllGameNames.Contains(_gameData.GameName) == false)
+        {
+            AllGameNames.Add(_gameData.GameName);
         }
 
-        void HandlePlayerJoined(PlayerInput playerInput)
-        {
-            Debug.Log($"{gameObject.name}: HanldePlayerJoined called (). {playerInput}");
-            PlayerData playerData = GetPlayerData(playerInput.playerIndex);
+        string commaSeperatedNames = string.Join(",", AllGameNames);
 
-            var player = playerInput.GetComponent<Player.Player>();
-            player.Bind(playerData);
+        PlayerPrefs.SetString("AllGameNames", commaSeperatedNames);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadGame()
+    {
+        // string text = PlayerPrefs.GetString();
+        _gameData = JsonUtility.FromJson<GameData>(text);
+        SceneManager.LoadScene(1);
+    }
+
+    void HandlePlayerJoined(PlayerInput playerInput)
+    {
+        Debug.Log("HandlePlayerJoined " + playerInput);
+        PlayerData playerData = GetPlayerData(playerInput.playerIndex);
+
+        Player player = playerInput.GetComponent<Player>();
+        player.Bind(playerData);
+    }
+
+    PlayerData GetPlayerData(int playerIndex)
+    {
+        if (_gameData.PlayerDatas.Count <= playerIndex)
+        {
+            var playerData = new PlayerData();
+            _gameData.PlayerDatas.Add(playerData);
         }
 
-        PlayerData GetPlayerData(int playerIndex)
-        {
-            if (_gameData.PlayerDatas.Count <= playerIndex)
-            {
-                var playerData = new PlayerData();
-                _gameData.PlayerDatas.Add(playerData);
-            }
+        return _gameData.PlayerDatas[playerIndex];
+    }
 
-            return _gameData.PlayerDatas[playerIndex];
-        }
-
-        public void NewGame()
-        {
-            Debug.Log("NewGameCalled");
-            _gameData = new GameData();
-            SceneManager.LoadScene(1);
-        }
+    public void NewGame()
+    {
+        Debug.Log("NewGame Called");
+        _gameData = new GameData(DateTime.Now.ToString("G"));
+        SceneManager.LoadScene(1);
     }
 }
