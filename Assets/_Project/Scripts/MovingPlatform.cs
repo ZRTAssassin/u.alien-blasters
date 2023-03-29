@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,4 +15,21 @@ public class MovingPlatform : MonoBehaviour
     {
         transform.position = Vector3.Lerp(_position1, _position2, _percentAcross);
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        var collider = GetComponent<BoxCollider2D>();
+        Gizmos.DrawWireCube(_position1, collider.bounds.size);
+        Gizmos.DrawWireCube(_position2, collider.bounds.size);
+        
+        Gizmos.color = Color.yellow;
+        var currentPosiotn = Vector3.Lerp(_position1, _position2, _percentAcross);
+        Gizmos.DrawWireCube(currentPosiotn, collider.bounds.size);
+    }
+
+    [ContextMenu("SetPosition1")]
+    public void SetPosition1() => _position1 = transform.position;
+    [ContextMenu("SetPosition2")]
+    public void SetPosition2() => _position1 = transform.position;
 }
