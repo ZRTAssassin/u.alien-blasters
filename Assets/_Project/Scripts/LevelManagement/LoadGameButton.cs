@@ -11,6 +11,12 @@ namespace _Project.Scripts.LevelManagement
 
         public void LoadGame() => GameManager.Instance.LoadGame(_gameName);
 
+        public void DeleteGame()
+        {
+            GameManager.Instance.DeleteGame(_gameName);
+            Destroy(gameObject);
+        }
+
         public void SetGameName(string gameName)
         {
             _gameName = gameName;
