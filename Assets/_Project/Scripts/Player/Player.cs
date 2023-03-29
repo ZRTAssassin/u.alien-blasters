@@ -249,4 +249,9 @@ using Random = UnityEngine.Random;
                 _audioSource.PlayOneShot(soundClip);
             }
         }
+
+        public void StopJump()
+        {
+            _jumpEndTime = Time.time;
+        }
     }
