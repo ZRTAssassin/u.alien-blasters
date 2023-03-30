@@ -51,3 +51,6 @@ TagManager:
   - name: Water
     uniqueID: 2450081015
     locked: 0
+  - name: Props
+    uniqueID: 2083344439
+    locked: 0
