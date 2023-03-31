@@ -11,6 +11,7 @@ public class Ladybug : MonoBehaviour
 
     [SerializeField] Vector2 _direction;
     [SerializeField] float _speed = 1f;
+    [SerializeField] float _raycastDistance = 0.2f;
 
     void Awake()
     {
@@ -22,6 +23,25 @@ public class Ladybug : MonoBehaviour
 
     void Update()
     {
+        Vector2 offset = _direction * _collider.bounds.extents.x;
+        Vector2 origin = (Vector2)transform.position + offset;
+
+        var hits = Physics2D.RaycastAll(origin, _direction, _raycastDistance);
+        Debug.DrawRay(origin, _direction, Color.red);
+
+        foreach (var hit in hits)
+        {
+            if (hit.collider != null && hit.collider.gameObject != gameObject)
+            {
+                _direction *= -1;
+                _spriteRenderer.flipX = _direction == Vector2.right;
+                break;
+            }
+        }
+        
+        
         _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
     }
+    
+    
 }
