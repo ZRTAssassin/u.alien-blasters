@@ -29,16 +29,20 @@ public class Ladybug : MonoBehaviour
         Vector2 origin = (Vector2)transform.position + offset;
         Gizmos.DrawLine(origin, origin + (_direction * _raycastDistance));
 
+        var downOrigin = GetDownRayPosition(collider);
+        Gizmos.DrawLine(downOrigin, downOrigin + (Vector2.down * _raycastDistance));
+    }
+
+    Vector2 GetDownRayPosition(Collider2D collider)
+    {
         var bounds = collider.bounds;
         if (_direction == Vector2.left)
         {
-            Vector2 bottomLeft = new Vector2(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y);
-            Gizmos.DrawLine(bottomLeft, bottomLeft + (Vector2.down * _raycastDistance));
+            return new Vector2(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y);
         }
         else
         {
-            Vector2 bottomRight = new Vector2(bounds.center.x + bounds.extents.x, bounds.center.y - bounds.extents.y);
-            Gizmos.DrawLine(bottomRight, bottomRight + (Vector2.down * _raycastDistance));
+            return new Vector2(bounds.center.x + bounds.extents.x, bounds.center.y - bounds.extents.y);
         }
     }
 
@@ -46,6 +50,26 @@ public class Ladybug : MonoBehaviour
     {
         Vector2 offset = _direction * _collider.bounds.extents.x;
         Vector2 origin = (Vector2)transform.position + offset;
+
+
+        bool canContinueWalking = false;
+        var downOrigin = GetDownRayPosition(_collider);
+        var dowHits = Physics2D.RaycastAll(downOrigin, Vector2.down, _raycastDistance);
+
+        foreach (var downHit in dowHits)
+        {
+            if (downHit.collider != null && downHit.collider.gameObject != gameObject)
+            {
+                canContinueWalking = true;
+            }
+        }
+        
+        if (!canContinueWalking)
+        {
+            _direction *= -1;
+            _spriteRenderer.flipX = _direction == Vector2.right;
+            return;
+        }
 
         var hits = Physics2D.RaycastAll(origin, _direction, _raycastDistance);
 
