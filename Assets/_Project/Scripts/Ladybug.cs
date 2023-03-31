@@ -9,7 +9,7 @@ public class Ladybug : MonoBehaviour
     [SerializeField] Collider2D _collider;
     [SerializeField] Rigidbody2D _rigidbody;
 
-    [SerializeField] Vector2 _direction;
+    [SerializeField] Vector2 _direction = Vector2.left;
     [SerializeField] float _speed = 1f;
     [SerializeField] float _raycastDistance = 0.2f;
 
@@ -18,7 +18,15 @@ public class Ladybug : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _direction = Vector2.left;
+    }
+
+    void OnDrawGizmos()
+    {
+        
+        Gizmos.color = Color.red;
+        Vector2 offset = _direction * GetComponent<Collider2D>().bounds.extents.x;
+        Vector2 origin = (Vector2)transform.position + offset;
+        Gizmos.DrawLine(origin, origin + (_direction * _raycastDistance));
     }
 
     void Update()
@@ -27,7 +35,7 @@ public class Ladybug : MonoBehaviour
         Vector2 origin = (Vector2)transform.position + offset;
 
         var hits = Physics2D.RaycastAll(origin, _direction, _raycastDistance);
-        Debug.DrawRay(origin, _direction, Color.red);
+        
 
         foreach (var hit in hits)
         {

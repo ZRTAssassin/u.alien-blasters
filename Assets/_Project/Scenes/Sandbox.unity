@@ -3025,6 +3025,18 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5533837506649051968, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533837506649051968, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533837506649051968, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
+      propertyPath: _direction.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6317878706740768437, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
       propertyPath: m_Name
       value: Ladybug
