@@ -3026,6 +3026,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5533837506649051968, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
+      propertyPath: _speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533837506649051968, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
       propertyPath: _collider
       value: 
       objectReference: {fileID: 0}
