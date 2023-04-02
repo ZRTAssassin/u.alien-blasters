@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ladybug : MonoBehaviour
+public class Ladybug : MonoBehaviour, ITakeLaserDamage
 {
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Collider2D _collider;
@@ -86,5 +86,10 @@ public class Ladybug : MonoBehaviour
 
 
         _rigidbody.velocity = new Vector2(_direction.x * _speed, _rigidbody.velocity.y);
+    }
+
+    public void TakeLaserDamage()
+    {
+        _rigidbody.velocity = Vector2.zero;
     }
 }

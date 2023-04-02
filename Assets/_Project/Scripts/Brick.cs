@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brick : MonoBehaviour
+public class Brick : MonoBehaviour, ITakeLaserDamage
 {
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] ParticleSystem _particles;

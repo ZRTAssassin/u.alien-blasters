@@ -1541,6 +1541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick_5
       objectReference: {fileID: 0}
+    - target: {fileID: 2953068450785888021, guid: 43b572dbbce6f1b479ea7194b4a5fbd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2953068450785888023, guid: 43b572dbbce6f1b479ea7194b4a5fbd7, type: 3}
       propertyPath: m_RootOrder
       value: 17
