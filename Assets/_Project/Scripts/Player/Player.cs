@@ -239,8 +239,9 @@ using Random = UnityEngine.Random;
                 SceneManager.LoadScene(0);
                 return;
             }
-
-            _rb.AddForce(-hitNormal * _knockback);
+            
+            //_rb.AddForce(-hitNormal * _knockback);
+            Bounce(-hitNormal, _knockback);
 
             var number = Random.Range(0, _hurtSounds.Count - 1);
             var soundClip = _hurtSounds[number];
@@ -253,5 +254,10 @@ using Random = UnityEngine.Random;
         public void StopJump()
         {
             _jumpEndTime = Time.time;
+        }
+
+        public void Bounce(Vector2 normal, float bounciness)
+        {
+            _rb.AddForce(-normal * bounciness);
         }
     }
