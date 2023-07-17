@@ -59,6 +59,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -273,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2190915349206088812, guid: 0aeca5550c21e5242a1388ceb3d63a51, type: 3}
       propertyPath: m_Name
-      value: Player Panel
+      value: Player Panel 2
       objectReference: {fileID: 0}
     - target: {fileID: 2190915349206088813, guid: 0aeca5550c21e5242a1388ceb3d63a51, type: 3}
       propertyPath: m_Pivot.x

@@ -9,10 +9,12 @@ public class PlayerPanel : MonoBehaviour
     [SerializeField] TMP_Text _text;
     [SerializeField] Image[] _hearts;
     [SerializeField] Image _flashImage;
+    [SerializeField] GameObject _holder;
     Player _player;
 
     public void Bind(Player player)
     {
+        _holder.SetActive(true);
         _player = player;
         _player.CoinsChanged += UpdateCoinsText;
         _player.HealthChanged += UpdateHealth;

@@ -29,9 +29,9 @@ public class GameManager : MonoBehaviour
 
         _playerInputManager = GetComponent<PlayerInputManager>();
         _playerInputManager.onPlayerJoined += HandlePlayerJoined;
-
+        
         SceneManager.sceneLoaded += HandleSceneLoaded;
-
+        
         var commaNames = PlayerPrefs.GetString("AllGameNames");
         Debug.Log(commaNames);
         AllGameNames = commaNames.Split(",").ToList();

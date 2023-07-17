@@ -41,7 +41,9 @@ public class MovingPlatform : MonoBehaviour
         var player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            player.transform.SetParent(transform);
+            //TODO FIX ME
+            Debug.Log("Hit player. Need to fix set parent stuff on hitting.");
+            //player.transform.SetParent(transform);
         }
     }
     void OnCollisionExit2D(Collision2D other)
