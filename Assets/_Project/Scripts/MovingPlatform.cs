@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : NetworkBehaviour
 {
     [SerializeField] List<Vector3> _positions = new List<Vector3>();
     [SerializeField] Vector3 _position1;

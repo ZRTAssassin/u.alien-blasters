@@ -88,7 +88,7 @@ public class Player : NetworkBehaviour
 
     #endregion
 
-    NetworkVariable<bool> isFacingLeft = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone,
+    NetworkVariable<bool> _isFacingLeft = new(false, NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Owner);
 
     public bool IsGrounded => _isGrounded;
@@ -106,8 +106,7 @@ public class Player : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
-        if (!IsOwner) Destroy(this);
+
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -117,7 +116,7 @@ public class Player : NetworkBehaviour
 
         FindObjectOfType<PlayerCanvas>().Bind(this);
 
-        isFacingLeft.OnValueChanged += Flip;
+        _isFacingLeft.OnValueChanged += Flip;
     }
 
     void Flip(bool previousvalue, bool newvalue)
@@ -221,35 +220,15 @@ public class Player : NetworkBehaviour
         if (_horizontal > 0)
         {
             //_spriteRenderer.flipX = false;
-            FlipSpriteServerRpc(false);
-            Flip(false);
-            //isFacingLeft.Value = false;
+            _isFacingLeft.Value = false;
         }
         else if (_horizontal < 0)
         {
             //_spriteRenderer.flipX = true;
-            FlipSpriteServerRpc(true);
-            Flip(true);
-            //isFacingLeft.Value = true;
+            _isFacingLeft.Value = true;
         }
     }
 
-    [ServerRpc]
-    void FlipSpriteServerRpc(bool value)
-    {
-        FlipSpriteClientRpc(value);
-    }
-
-    [ClientRpc]
-    void FlipSpriteClientRpc(bool value)
-    {
-        if (!IsOwner) Flip(value);
-    }
-
-    void Flip(bool value)
-    {
-        _spriteRenderer.flipX = value;
-    }
 
     void OnDrawGizmos()
     {

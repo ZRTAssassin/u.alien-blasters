@@ -931,6 +931,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 51657756}
   - {fileID: 537753043}
   - {fileID: 1293276396}
   - {fileID: 641928720}
@@ -939,7 +940,6 @@ Transform:
   - {fileID: 1605436987}
   - {fileID: 1827661225}
   - {fileID: 1696787892}
-  - {fileID: 51657756}
   - {fileID: 5178005}
   - {fileID: 1352391762}
   m_Father: {fileID: 0}
@@ -3462,6 +3462,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 583512208}
     m_Modifications:
+    - target: {fileID: 3096596369572653404, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2190066887
+      objectReference: {fileID: 0}
     - target: {fileID: 4267331050801852323, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
       propertyPath: m_Name
       value: Moving Platform 6
@@ -3510,92 +3514,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4267331050801852327, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      propertyPath: _position1.x
-      value: 4.5
+    - target: {fileID: 8202844797187542778, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: Interpolate
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4267331050801852327, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      propertyPath: _position1.y
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4267331050801852327, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      propertyPath: _position2.x
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4267331050801852327, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      propertyPath: _position2.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4267331050801852327, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      propertyPath: _platformMoveSpeed
+    - target: {fileID: 8202844797187542778, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncRotAngleY
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4267331050801852323, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4267331050786378682}
-    - targetCorrespondingSourceObject: {fileID: 4267331050801852323, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4267331050786378683}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
---- !u!1 &4267331050786378681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4267331050801852323, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
-  m_PrefabInstance: {fileID: 4267331050786378680}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4267331050786378682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4267331050786378681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1804337097
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
---- !u!114 &4267331050786378683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4267331050786378681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 0
-  SyncScaleY: 0
-  SyncScaleZ: 0
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!1001 &4891742083735909269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3732,6 +3663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4783279622450144007, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 622960548
+      objectReference: {fileID: 0}
     - target: {fileID: 6317878706740768437, guid: 18269bc687d69954fb637ef8cc510b09, type: 3}
       propertyPath: m_Name
       value: Ladybug

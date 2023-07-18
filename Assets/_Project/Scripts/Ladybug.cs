@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Ladybug : MonoBehaviour, ITakeLaserDamage
+public class Ladybug : NetworkBehaviour, ITakeLaserDamage
 {
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Collider2D _collider;
@@ -82,7 +83,7 @@ public class Ladybug : MonoBehaviour, ITakeLaserDamage
                 canContinueWalking = true;
             }
         }
-        
+
         if (!canContinueWalking)
         {
             _direction *= -1;
