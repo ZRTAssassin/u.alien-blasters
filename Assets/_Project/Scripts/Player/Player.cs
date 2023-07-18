@@ -107,6 +107,7 @@ public class Player : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        if (!IsOwner) Destroy(this);
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
@@ -129,7 +130,7 @@ public class Player : NetworkBehaviour
     {
         //Debug.Log($"Can move? {IsOwner}");
         if (!IsOwner) return;
-        Debug.Log($"Can move? {IsOwner}");
+        //Debug.Log($"Can move? {IsOwner}");
         UpdateGrounding();
 
         horizontalInput = _playerInput.actions["Move"].ReadValue<Vector2>().x;
@@ -151,7 +152,24 @@ public class Player : NetworkBehaviour
 
         var desiredHorizontal = horizontalInput * _maxHorizontalSpeed;
         var acceleration = (_isOnSnow) ? _snowAcceleration : _groundAcceleration;
-        _horizontal = Mathf.Lerp(_horizontal, desiredHorizontal, Time.deltaTime * acceleration);
+        //_horizontal = Mathf.Lerp(_horizontal, desiredHorizontal, Time.deltaTime * acceleration);
+        if (desiredHorizontal > _horizontal)
+        {
+            _horizontal += acceleration * Time.deltaTime;
+            if (_horizontal > desiredHorizontal)
+            {
+                _horizontal = desiredHorizontal;
+            }
+        }
+        else if (desiredHorizontal < _horizontal)
+        {
+            _horizontal -= acceleration * Time.deltaTime;
+            if (_horizontal < desiredHorizontal)
+            {
+                _horizontal = desiredHorizontal;
+            }
+        }
+
         _rb.velocity = new Vector2(_horizontal, vertical);
         UpdateSprite();
     }
@@ -203,15 +221,35 @@ public class Player : NetworkBehaviour
         if (_horizontal > 0)
         {
             //_spriteRenderer.flipX = false;
-            isFacingLeft.Value = false;
+            FlipSpriteServerRpc(false);
+            Flip(false);
+            //isFacingLeft.Value = false;
         }
         else if (_horizontal < 0)
         {
             //_spriteRenderer.flipX = true;
-            isFacingLeft.Value = true;
+            FlipSpriteServerRpc(true);
+            Flip(true);
+            //isFacingLeft.Value = true;
         }
     }
 
+    [ServerRpc]
+    void FlipSpriteServerRpc(bool value)
+    {
+        FlipSpriteClientRpc(value);
+    }
+
+    [ClientRpc]
+    void FlipSpriteClientRpc(bool value)
+    {
+        if (!IsOwner) Flip(value);
+    }
+
+    void Flip(bool value)
+    {
+        _spriteRenderer.flipX = value;
+    }
 
     void OnDrawGizmos()
     {
