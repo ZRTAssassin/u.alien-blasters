@@ -88,6 +88,8 @@ public class Player : NetworkBehaviour
 
     #endregion
 
+    NetworkVariable<bool> isFacingLeft = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Owner);
 
     public bool IsGrounded => _isGrounded;
 
@@ -113,6 +115,13 @@ public class Player : NetworkBehaviour
         _playerInput = GetComponent<PlayerInput>();
 
         FindObjectOfType<PlayerCanvas>().Bind(this);
+
+        isFacingLeft.OnValueChanged += Flip;
+    }
+
+    void Flip(bool previousvalue, bool newvalue)
+    {
+        _spriteRenderer.flipX = newvalue;
     }
 
     // Update is called once per frame
@@ -193,14 +202,15 @@ public class Player : NetworkBehaviour
         _animator.SetFloat(AnimHorizontalSpeed, Math.Abs(_horizontal));
         if (_horizontal > 0)
         {
-            _spriteRenderer.flipX = false;
+            //_spriteRenderer.flipX = false;
+            isFacingLeft.Value = false;
         }
         else if (_horizontal < 0)
         {
-            _spriteRenderer.flipX = true;
+            //_spriteRenderer.flipX = true;
+            isFacingLeft.Value = true;
         }
     }
-
 
 
     void OnDrawGizmos()
