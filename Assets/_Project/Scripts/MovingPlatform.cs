@@ -15,6 +15,7 @@ public class MovingPlatform : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsServer) return;
         _percentAcross = Mathf.PingPong(Time.time * _platformMoveSpeed, 1f);
         transform.position = Vector3.Lerp(_position1, _position2, _percentAcross);
     }
@@ -52,7 +53,9 @@ public class MovingPlatform : NetworkBehaviour
         var player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            player.transform.SetParent(null);
+            //TODO FIX ME
+            Debug.Log("Player left. Need to fix parenting stuff.");
+            //player.transform.SetParent(null);
         }
     }
 }
