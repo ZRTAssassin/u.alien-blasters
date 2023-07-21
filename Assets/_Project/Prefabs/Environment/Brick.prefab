@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2953068450785888020}
   - component: {fileID: 2953068450785888017}
   - component: {fileID: 2953068450785888016}
+  - component: {fileID: 3007220847700974397}
   m_Layer: 0
   m_Name: Brick
   m_TagString: Untagged
@@ -98,7 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d31ee8da1defd4ca5f05cee0bc1b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
   _particles: {fileID: 3370875896509229255, guid: db04154881037324e8ebf2ca812289e1, type: 3}
+  _takenDamageTime: 0
+  _laserDestructionTime: 1
+  _resetColorTime: 0
 --- !u!61 &2953068450785888016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,3 +149,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3007220847700974397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953068450785888021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

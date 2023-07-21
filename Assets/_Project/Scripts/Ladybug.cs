@@ -12,12 +12,21 @@ public class Ladybug : NetworkBehaviour, ITakeLaserDamage
     [SerializeField] float _raycastDistance = 0.2f;
     [SerializeField] LayerMask _forwardRaycastLayerMask;
 
+    NetworkVariable<bool> _isFacingRight = new();
+
     void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _isFacingRight.OnValueChanged += HandleIsFacingLeftChanged;
     }
+
+    void HandleIsFacingLeftChanged(bool previousvalue, bool newvalue)
+    {
+        _spriteRenderer.flipX = newvalue;
+    }
+
 
     void OnDrawGizmos()
     {
@@ -47,6 +56,7 @@ public class Ladybug : NetworkBehaviour, ITakeLaserDamage
 
     void Update()
     {
+        if (!IsServer) return;
         CheckGroundInFront();
         CheckIntFront();
 
@@ -64,7 +74,8 @@ public class Ladybug : NetworkBehaviour, ITakeLaserDamage
             if (hit.collider != null && hit.collider.gameObject != gameObject)
             {
                 _direction *= -1;
-                _spriteRenderer.flipX = _direction == Vector2.right;
+                //_spriteRenderer.flipX = _direction == Vector2.right;
+                _isFacingRight.Value = _direction == Vector2.right;
                 break;
             }
         }
@@ -87,7 +98,8 @@ public class Ladybug : NetworkBehaviour, ITakeLaserDamage
         if (!canContinueWalking)
         {
             _direction *= -1;
-            _spriteRenderer.flipX = _direction == Vector2.right;
+            // _spriteRenderer.flipX = _direction == Vector2.right;
+            _isFacingRight.Value = _direction == Vector2.right;
             return;
         }
     }

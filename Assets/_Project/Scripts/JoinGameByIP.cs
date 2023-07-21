@@ -14,11 +14,17 @@ public class JoinGameByIP : MonoBehaviour
     [SerializeField] Button _setIPButton;
     [SerializeField] TMP_InputField _ipInput;
     [SerializeField] TMP_InputField _portInput;
+    [SerializeField] TMP_Text _ipText;
 
     void Awake()
     {
         _transport = GetComponent<UnityTransport>();
         _setIPButton.onClick.AddListener(HandleSetIP);
+    }
+
+    void Start()
+    {
+        _ipText.text = $"{_transport.ConnectionData.Address}:{_transport.ConnectionData.Port}";
     }
 
     void HandleSetIP()
@@ -27,6 +33,7 @@ public class JoinGameByIP : MonoBehaviour
         if (IsValidIP(_ipInput.text) && IsValidPort(_portInput.text))
         {
             SetIPAddress(_ipInput.text, Convert.ToUInt16(_portInput.text));
+            _ipText.text = $"{_ipInput.text}: {_portInput.text}";
         }
         
     }
