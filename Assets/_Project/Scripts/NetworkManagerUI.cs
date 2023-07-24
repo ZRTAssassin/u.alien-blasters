@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -15,6 +16,11 @@ public class NetworkManagerUI : MonoBehaviour
     {
         _hostButton.onClick.AddListener(() => { NetworkManager.Singleton.StartHost(); });
         _clientButton.onClick.AddListener(() => { NetworkManager.Singleton.StartClient(); });
+       
+    }
+
+    void Start()
+    {
         NetworkManager.Singleton.OnServerStarted += Singleton_ServerStarted;
         NetworkManager.Singleton.OnClientStarted += Singleton_ServerStarted;
     }

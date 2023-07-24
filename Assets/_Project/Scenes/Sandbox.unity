@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1377775957284773841, guid: e276b7dfd39e4fd41a59a6643190bc46, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2295448197
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2566,6 +2570,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1377775957284773841, guid: e276b7dfd39e4fd41a59a6643190bc46, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1586232199
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2887,6 +2895,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncScaleX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncScaleY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncScaleZ
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncPositionZ
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncRotAngleX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncRotAngleY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890661218790335557, guid: 50726025818332b468e68b2fb70b1af7, type: 3}
+      propertyPath: SyncRotAngleZ
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3141,9 +3177,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2738117117826691012, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738117117826691012, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738117117826691012, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738117117826691012, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501543778668177478, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501543778668177478, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501543778668177478, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4501543778668177478, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7623957936244892493, guid: e39888f0024de214dae239763c835817, type: 3}
       propertyPath: m_Name
       value: NetworkManager & InputManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284307915565978633, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284307915565978633, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284307915565978633, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284307915565978633, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3217,5 +3301,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9183296209554644609, guid: bf94a5e0d98a60542a5c8e3fd945eefa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9183296208371418665}
   m_SourcePrefab: {fileID: 100100000, guid: bf94a5e0d98a60542a5c8e3fd945eefa, type: 3}
+--- !u!1 &9183296208371418664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9183296209554644609, guid: bf94a5e0d98a60542a5c8e3fd945eefa, type: 3}
+  m_PrefabInstance: {fileID: 9183296208371418663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9183296208371418665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183296208371418664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 604502798
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

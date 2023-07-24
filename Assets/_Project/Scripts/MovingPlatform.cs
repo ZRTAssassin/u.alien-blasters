@@ -16,8 +16,11 @@ public class MovingPlatform : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
-        _percentAcross = Mathf.PingPong(Time.time * _platformMoveSpeed, 1f);
+        _percentAcross = Mathf.PingPong(NetworkManager.Singleton.LocalTime.TimeAsFloat * _platformMoveSpeed, 1f);
         transform.position = Vector3.Lerp(_position1, _position2, _percentAcross);
+        // Move up and down by 5 meters and change direction every 3 seconds.
+        // var positionY = Mathf.PingPong(NetworkManager.Singleton.LocalTime.TimeAsFloat / 3f, 1f) * 5f;
+        // transform.position = new Vector3(0, positionY, 0);
     }
 
     void OnDrawGizmos()
