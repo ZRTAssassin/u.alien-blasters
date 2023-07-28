@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9183296209554644608}
   - component: {fileID: 9183296209554644622}
   - component: {fileID: 9183296209554644621}
+  - component: {fileID: 6850137371629193710}
   m_Layer: 0
   m_Name: Yellow Laser Switch
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9183296209554644608
 SpriteRenderer:
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b95deb78d50f0841a4cc4fb22640c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sprites: []
   _spriteRenderer: {fileID: 0}
   _left: {fileID: 21300000, guid: 1e19d700ded6d4645b8f0e407b4d57cd, type: 3}
   _right: {fileID: 21300000, guid: efa45c27d5ad01440aed256bf2ae6429, type: 3}
@@ -106,7 +108,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Laser, Assembly-CSharp
-        m_MethodName: Toggle
+        m_MethodName: ToggleServerRpc
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -121,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Laser, Assembly-CSharp
-        m_MethodName: Toggle
+        m_MethodName: ToggleServerRpc
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -177,3 +179,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6850137371629193710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183296209554644609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

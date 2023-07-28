@@ -15,16 +15,30 @@ public class JoinGameByIP : MonoBehaviour
     [SerializeField] TMP_InputField _ipInput;
     [SerializeField] TMP_InputField _portInput;
     [SerializeField] TMP_Text _ipText;
+    [SerializeField] Button _AutoIPSetup;
 
     void Awake()
     {
         _transport = GetComponent<UnityTransport>();
         _setIPButton.onClick.AddListener(HandleSetIP);
+        _AutoIPSetup.onClick.AddListener(HandleSetIPToDevIP);
+
+        var thing2 = _transport.ConnectionData.ServerListenAddress;
+        var thing = _transport.ConnectionData.ListenEndPoint;
+    }
+
+    void HandleSetIPToDevIP()
+    {
+        Debug.Log("Button Clicked bru");
+       
+            SetIPAddress("99.101.241.159", Convert.ToUInt16(30000));
+            
+
     }
 
     void Start()
     {
-        _ipText.text = $"{_transport.ConnectionData.Address}:{_transport.ConnectionData.Port}";
+        //_ipText.text = $"{_transport.ConnectionData.Address}:{_transport.ConnectionData.Port}";
     }
 
     void HandleSetIP()
@@ -33,7 +47,6 @@ public class JoinGameByIP : MonoBehaviour
         if (IsValidIP(_ipInput.text) && IsValidPort(_portInput.text))
         {
             SetIPAddress(_ipInput.text, Convert.ToUInt16(_portInput.text));
-            _ipText.text = $"{_ipInput.text}: {_portInput.text}";
         }
         
     }
@@ -51,6 +64,7 @@ public class JoinGameByIP : MonoBehaviour
     {
         _transport.ConnectionData.Address = $"{newIP}";
         _transport.ConnectionData.Port = newPort;
+        _ipText.text = $"{newIP}: {newPort}";
     }
 
 
