@@ -25,15 +25,14 @@ public class JoinGameByIP : MonoBehaviour
 
         var thing2 = _transport.ConnectionData.ServerListenAddress;
         var thing = _transport.ConnectionData.ListenEndPoint;
+        Debug.Log($"address: {thing2}, endpoint: {thing}");
     }
 
     void HandleSetIPToDevIP()
     {
-        Debug.Log("Button Clicked bru");
-       
-            SetIPAddress("99.101.241.159", Convert.ToUInt16(30000));
-            
+        Debug.Log("HandleSetIPToDevIP");
 
+        SetIPAddress("99.101.241.159", Convert.ToUInt16(30000));
     }
 
     void Start()
@@ -43,12 +42,11 @@ public class JoinGameByIP : MonoBehaviour
 
     void HandleSetIP()
     {
-        Debug.Log("Button Clicked bru");
+        Debug.Log("HandleSetIP");
         if (IsValidIP(_ipInput.text) && IsValidPort(_portInput.text))
         {
             SetIPAddress(_ipInput.text, Convert.ToUInt16(_portInput.text));
         }
-        
     }
 
     [ContextMenu("Custom Functions/Set IP")]
@@ -62,6 +60,7 @@ public class JoinGameByIP : MonoBehaviour
 
     void SetIPAddress(string newIP, ushort newPort)
     {
+        Debug.Log($"SetIPAddress {newIP}: {newPort}");
         _transport.ConnectionData.Address = $"{newIP}";
         _transport.ConnectionData.Port = newPort;
         _ipText.text = $"{newIP}: {newPort}";
@@ -82,7 +81,7 @@ public class JoinGameByIP : MonoBehaviour
         }
 
         byte tempForParsing;
-    
+
         return splitValues.All(r => byte.TryParse(r, out tempForParsing));
     }
 
