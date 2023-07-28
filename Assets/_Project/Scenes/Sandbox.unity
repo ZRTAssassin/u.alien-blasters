@@ -1437,12 +1437,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 476892409429594514, guid: e39888f0024de214dae239763c835817, type: 3}
-      propertyPath: ConnectionData.ServerListenAddress
-      value: 0.0.0.0
+      propertyPath: ConnectionData.Address
+      value: 192.168.1.131
       objectReference: {fileID: 0}
-    - target: {fileID: 1486345543059708410, guid: e39888f0024de214dae239763c835817, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
+    - target: {fileID: 637097974031638177, guid: e39888f0024de214dae239763c835817, type: 3}
+      propertyPath: NetworkConfig.ForceSamePrefabs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1486345543059708410, guid: e39888f0024de214dae239763c835817, type: 3}
       propertyPath: m_LocalPosition.x

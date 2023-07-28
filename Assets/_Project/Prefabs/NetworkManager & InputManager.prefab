@@ -2416,7 +2416,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 30000
-    ServerListenAddress: 127.0.0.1
+    ServerListenAddress: 0.0.0.0
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -2436,6 +2436,7 @@ MonoBehaviour:
   _hostButton: {fileID: 5418560415175507603}
   _clientButton: {fileID: 4822402074330104538}
   _uiHolder: {fileID: 951662701154200241}
+  _transport: {fileID: 476892409429594514}
 --- !u!114 &4960466028177254394
 MonoBehaviour:
   m_ObjectHideFlags: 0
