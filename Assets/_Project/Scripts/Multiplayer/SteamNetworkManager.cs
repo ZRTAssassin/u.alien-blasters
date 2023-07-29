@@ -13,6 +13,9 @@ public class SteamNetworkManager : MonoBehaviour
 
     void Awake()
     {
+       var playername = SteamClient.Name;
+        var playersteamid = SteamClient.SteamId;
+        Debug.Log($"{playername}, {playersteamid}");
         if (Instance == null)
         {
             Instance = this;
@@ -26,7 +29,7 @@ public class SteamNetworkManager : MonoBehaviour
 
     void Start()
     {
-        _transport = GetComponent<FacepunchTransport>();
+        _transport = NetworkManager.Singleton.GetComponent<FacepunchTransport>();
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
         SteamMatchmaking.OnLobbyMemberJoined += OnLobbyMemberJoined;
@@ -56,6 +59,8 @@ public class SteamNetworkManager : MonoBehaviour
     public async void StartHost()
     {
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         NetworkManager.Singleton.StartHost();
 
@@ -68,6 +73,9 @@ public class SteamNetworkManager : MonoBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         _transport.targetSteamId = id;
+        
+        Debug.Log($"Joining room hosted by {_transport.targetSteamId}", this);
+        
         if (NetworkManager.Singleton.StartClient())
         {
             Debug.Log("Client has joined", this);
@@ -78,7 +86,7 @@ public class SteamNetworkManager : MonoBehaviour
     {
         CurrentLobby?.Leave();
         if (NetworkManager.Singleton == null) return;
-        
+
         NetworkManager.Singleton.Shutdown();
     }
 
@@ -101,6 +109,11 @@ public class SteamNetworkManager : MonoBehaviour
 
     void OnGameLobbyJoinRequested(Lobby lobby, SteamId id)
     {
+        bool isSame = lobby.Owner.Id.Equals(id);
+
+        Debug.Log($"Owner: {lobby.Owner}");
+        Debug.Log($"Id: {id}");
+        Debug.Log($"IsSame: {isSame}", this);
         StartClient(lobby.Id);
     }
 
