@@ -13,9 +13,6 @@ public class SteamNetworkManager : MonoBehaviour
 
     void Awake()
     {
-       var playername = SteamClient.Name;
-        var playersteamid = SteamClient.SteamId;
-        Debug.Log($"{playername}, {playersteamid}");
         if (Instance == null)
         {
             Instance = this;
@@ -26,6 +23,8 @@ public class SteamNetworkManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    // todo: remove start client from joining lobby
+    // after joining the lobby, then start client on joinedlobby callback?
 
     void Start()
     {
@@ -37,6 +36,10 @@ public class SteamNetworkManager : MonoBehaviour
         SteamMatchmaking.OnLobbyInvite += OnLobbyInvite;
         SteamMatchmaking.OnLobbyGameCreated += OnLobbyGameCreated;
         SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
+
+        var playername = SteamClient.Name;
+        var playersteamid = SteamClient.SteamId;
+        Debug.Log($"{playername}, {playersteamid}");
     }
 
     void OnDestroy()
@@ -58,13 +61,18 @@ public class SteamNetworkManager : MonoBehaviour
 
     public async void StartHost()
     {
+       
+        CurrentLobby = await SteamMatchmaking.CreateLobbyAsync(4);
+        Debug.Log($"Started Host: {CurrentLobby.ToString()}");
+    }
+
+    public void StartGame()
+    {
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         NetworkManager.Singleton.StartHost();
-
-        await SteamMatchmaking.CreateLobbyAsync(4);
     }
 
     void StartClient(SteamId id)
@@ -73,9 +81,9 @@ public class SteamNetworkManager : MonoBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
         _transport.targetSteamId = id;
-        
+
         Debug.Log($"Joining room hosted by {_transport.targetSteamId}", this);
-        
+
         if (NetworkManager.Singleton.StartClient())
         {
             Debug.Log("Client has joined", this);
@@ -110,11 +118,11 @@ public class SteamNetworkManager : MonoBehaviour
     void OnGameLobbyJoinRequested(Lobby lobby, SteamId id)
     {
         bool isSame = lobby.Owner.Id.Equals(id);
-
-        Debug.Log($"Owner: {lobby.Owner}");
-        Debug.Log($"Id: {id}");
-        Debug.Log($"IsSame: {isSame}", this);
-        StartClient(lobby.Id);
+        Debug.Log("Joining a lobby now.");
+        CurrentLobby = lobby;
+        Debug.Log($"Owner: {lobby.Owner}, Id: {id}, IsSame: {isSame}", this);
+        CurrentLobby?.Join();
+        //StartClient(lobby.Id);
     }
 
     void OnLobbyGameCreated(Lobby lobby, uint ip, ushort port, SteamId id)
@@ -144,14 +152,14 @@ public class SteamNetworkManager : MonoBehaviour
     {
         if (result != Result.OK)
         {
-            Debug.LogError($"Lobby couldn't be ccreated, {result}", this);
+            Debug.LogError($"Lobby couldn't be created, {result}", this);
             return;
         }
 
         lobby.SetFriendsOnly();
         lobby.SetData("name", "Cool Lobby Name");
         lobby.SetJoinable(true);
-        Debug.Log("Lobby has been created", this);
+        Debug.Log($"Lobby has been created, {lobby.Id}", this);
     }
 
     #endregion

@@ -8,18 +8,13 @@ public class SteamNetworkManagerUI : MonoBehaviour
     [SerializeField] Button _hostButton;
     [SerializeField] Button _clientButton;
     [SerializeField] GameObject _uiHolder;
+    [SerializeField] SteamNetworkManager _manager;
 
 
-    void Awake()
+    void Start()
     {
-        _hostButton.onClick.AddListener(() =>
-        { 
-            SteamNetworkManager manager = GetComponent<SteamNetworkManager>();
-            manager.StartHost();
-        });
-        _clientButton.onClick.AddListener(() =>
-        {
-            
-        });
+        _manager = GetComponent<SteamNetworkManager>();
+        _hostButton.onClick.AddListener(() => { _manager.StartHost(); });
+        _clientButton.onClick.AddListener(() => { _manager.StartGame(); });
     }
 }
