@@ -154,6 +154,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &327435154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7082398712239201052, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+  m_PrefabInstance: {fileID: 587278582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &327435156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327435154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1001 &587278582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +193,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2468475871791048631, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468475871791048631, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468475871791048631, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468475871791048631, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2792603707138967748, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -202,14 +249,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4660264823800917345, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660264823800917345, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660264823800917345, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660264823800917345, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277733825625007514, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: _playerDisplayPrefab
+      value: 
+      objectReference: {fileID: 462600977891483074, guid: 2d58bdb04e4cfaa40bd4e172f67d1e83, type: 3}
     - target: {fileID: 5904847564334825802, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
       propertyPath: m_Name
       value: NetworkManager & InputManager_Facepunch_1
       objectReference: {fileID: 0}
+    - target: {fileID: 6960081533503187077, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960081533503187077, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960081533503187077, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960081533503187077, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7082398712239201052, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 327435156}
   m_SourcePrefab: {fileID: 100100000, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
 --- !u!1001 &1568645465
 PrefabInstance:

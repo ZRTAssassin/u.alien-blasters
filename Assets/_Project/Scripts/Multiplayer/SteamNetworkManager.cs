@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Netcode.Transports.Facepunch;
 using Steamworks;
 using Steamworks.Data;
@@ -8,7 +9,12 @@ using UnityEngine;
 public class SteamNetworkManager : MonoBehaviour
 {
     public static SteamNetworkManager Instance { get; private set; }
+
+    public event Action<Friend> OnFriendLeave;
+    public event Action<Friend> OnFriendJoin;
+
     public Lobby? CurrentLobby { get; private set; } = null;
+    public List<Friend> CurrentPlayers = new();
     FacepunchTransport _transport = null;
 
     void Awake()
@@ -37,6 +43,7 @@ public class SteamNetworkManager : MonoBehaviour
         SteamMatchmaking.OnLobbyGameCreated += OnLobbyGameCreated;
         SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
 
+
         var playername = SteamClient.Name;
         var playersteamid = SteamClient.SteamId;
         Debug.Log($"{playername}, {playersteamid}");
@@ -61,7 +68,6 @@ public class SteamNetworkManager : MonoBehaviour
 
     public async void StartHost()
     {
-       
         CurrentLobby = await SteamMatchmaking.CreateLobbyAsync(4);
         Debug.Log($"Started Host: {CurrentLobby.ToString()}");
     }
@@ -84,10 +90,10 @@ public class SteamNetworkManager : MonoBehaviour
 
         Debug.Log($"Joining room hosted by {_transport.targetSteamId}", this);
 
-        if (NetworkManager.Singleton.StartClient())
-        {
-            Debug.Log("Client has joined", this);
-        }
+        // if (NetworkManager.Singleton.StartClient())
+        // {
+        //     Debug.Log("Client has joined", this);
+        // }
     }
 
     public void Disconnect()
@@ -118,32 +124,44 @@ public class SteamNetworkManager : MonoBehaviour
     void OnGameLobbyJoinRequested(Lobby lobby, SteamId id)
     {
         bool isSame = lobby.Owner.Id.Equals(id);
-        Debug.Log("Joining a lobby now.");
+        //Debug.Log("Joining a lobby now.");
         CurrentLobby = lobby;
-        Debug.Log($"Owner: {lobby.Owner}, Id: {id}, IsSame: {isSame}", this);
+        Debug.Log($"OnGameLobbyJoinRequested: Owner: {lobby.Owner}, Id: {id}, IsSame: {isSame}", this);
         CurrentLobby?.Join();
         //StartClient(lobby.Id);
     }
 
     void OnLobbyGameCreated(Lobby lobby, uint ip, ushort port, SteamId id)
     {
+        Debug.Log($"OnLobbyGameCreated: {lobby.Owner.Name} created a lobby");
     }
 
     void OnLobbyInvite(Friend friend, Lobby lobby)
     {
-        Debug.Log($"You got an invite from {friend.Name}", this);
+        Debug.Log($"OnLobbyInvite: You got an invite from {friend.Name}", this);
     }
 
     void OnLobbyMemberLeave(Lobby lobby, Friend friend)
     {
+        Debug.Log($"OnLobbyMemberLeave: {friend.Name} left");
+        RemovePlayerFromPlayerList(friend);
     }
 
     void OnLobbyMemberJoined(Lobby lobby, Friend friend)
     {
+        Debug.Log($"OnLobbyMemberJoined: {friend.Name} joined");
+        AddPlayerToPlayerList(friend);
     }
 
     void OnLobbyEntered(Lobby lobby)
     {
+        Debug.Log($"OnLobbyEntered: Joined {lobby.Owner.Name}'s lobby");
+        foreach (Friend lobbyMember in lobby.Members)
+        {
+            AddPlayerToPlayerList(lobbyMember);
+        }
+
+        //unity call
         if (NetworkManager.Singleton.IsHost) return;
         StartClient(lobby.Id);
     }
@@ -159,8 +177,23 @@ public class SteamNetworkManager : MonoBehaviour
         lobby.SetFriendsOnly();
         lobby.SetData("name", "Cool Lobby Name");
         lobby.SetJoinable(true);
-        Debug.Log($"Lobby has been created, {lobby.Id}", this);
+        CurrentLobby = lobby;
+
+        Debug.Log($"OnLobbyCreated by {lobby.Id}", this);
     }
 
     #endregion
+
+
+    void AddPlayerToPlayerList(Friend friend)
+    {
+        CurrentPlayers.Add(friend);
+        OnFriendJoin?.Invoke(friend);
+    }
+
+    void RemovePlayerFromPlayerList(Friend friend)
+    {
+        CurrentPlayers.Remove(friend);
+        OnFriendLeave?.Invoke(friend);
+    }
 }
