@@ -8,6 +8,6 @@ namespace _Project.Scripts.LevelManagement
     {
         void Start() => GetComponent<Button>().onClick.AddListener(CreateNewGame);
 
-        public void CreateNewGame() => GameManager.Instance.NewGame();
+        public void CreateNewGame() => GameManager_Old.Instance.NewGame();
     }
 }

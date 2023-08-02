@@ -997,6 +997,7 @@ GameObject:
   - component: {fileID: 3318033405590653727}
   - component: {fileID: 2143740776152494467}
   - component: {fileID: 488313981525426067}
+  - component: {fileID: 7671981753702058335}
   m_Layer: 5
   m_Name: NetworkManagerUI
   m_TagString: Untagged
@@ -1089,6 +1090,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &7671981753702058335
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555072859691577734}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5904847564334825802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1117,6 @@ GameObject:
   - component: {fileID: 5277733825625007514}
   - component: {fileID: 3651550938404988075}
   - component: {fileID: 1880400520227540393}
-  - component: {fileID: 1911159793903279182}
   m_Layer: 0
   m_Name: NetworkManager & InputManager_Facepunch
   m_TagString: Untagged
@@ -1236,8 +1248,8 @@ MonoBehaviour:
   _hostButton: {fileID: 9011183685963778737}
   _clientButton: {fileID: 3369862633673698567}
   _playerListHolder: {fileID: 7082398712239201052}
-  _playerDisplayPrefab: {fileID: 0}
-  _manager: {fileID: 0}
+  _playerDisplayPrefab: {fileID: 462600977891483074, guid: 2d58bdb04e4cfaa40bd4e172f67d1e83, type: 3}
+  _networkManagerUI: {fileID: 7671981753702058335}
 --- !u!114 &3651550938404988075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,14 +1280,6 @@ MonoBehaviour:
   _log: 1
   maxLines: 30
   _debugLogText: {fileID: 1662520813578952845}
---- !u!81 &1911159793903279182
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5904847564334825802}
-  m_Enabled: 1
 --- !u!1 &7082398712239201052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,6 +1289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2875975027913496832}
+  - component: {fileID: 8697851165083788347}
   m_Layer: 5
   m_Name: PlayersList
   m_TagString: Untagged
@@ -1311,6 +1316,32 @@ RectTransform:
   m_AnchoredPosition: {x: -25, y: -473}
   m_SizeDelta: {x: 450, y: 300}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &8697851165083788347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7082398712239201052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &8645691929674734984
 GameObject:
   m_ObjectHideFlags: 0

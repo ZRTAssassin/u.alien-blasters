@@ -13,6 +13,7 @@ public class SteamNetworkManagerUI : MonoBehaviour
     [SerializeField] Button _clientButton;
     [SerializeField] GameObject _playerListHolder;
     [SerializeField] GameObject _playerDisplayPrefab;
+    [SerializeField] CanvasGroup _networkManagerUI;
 
 
     void Start()
@@ -51,6 +52,23 @@ public class SteamNetworkManagerUI : MonoBehaviour
         SteamNetworkManager.Instance.OnFriendJoin -= SteamNetworkManagerOnOnFriendJoin;
         SteamNetworkManager.Instance.OnFriendLeave -= SteamNetworkManagerOnOnFriendLeave;
     }
-    
+
+    public void UpdateVisibility(bool visible)
+    {
+        switch (visible)
+        {
+            case true:
+                _networkManagerUI.alpha = 1;
+                _networkManagerUI.interactable = true;
+                _networkManagerUI.blocksRaycasts = true;
+                break;
+            case false:
+                _networkManagerUI.alpha = 0;
+                _networkManagerUI.interactable = false;
+                _networkManagerUI.blocksRaycasts = false;
+                break;
+
+        }
+    }
     
 }

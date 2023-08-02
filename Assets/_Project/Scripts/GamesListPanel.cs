@@ -10,7 +10,7 @@ public class GamesListPanel : MonoBehaviour
 
     void Start()
     {
-        foreach (var gameName in GameManager.Instance.AllGameNames)
+        foreach (var gameName in GameManager_Old.Instance.AllGameNames)
         {
             var button = Instantiate(_buttonPrefab, transform);
             button.SetGameName(gameName);

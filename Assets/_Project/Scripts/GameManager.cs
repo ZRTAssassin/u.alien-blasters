@@ -1,114 +1,84 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public List<string> AllGameNames = new List<string>();
-
-
-    [SerializeField] GameData _gameData;
-
-    PlayerInputManager _playerInputManager;
+    public event Action<Gamestate> OnGamestateChanged;
 
     void Awake()
     {
-        if (Instance != null)
+        if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        _playerInputManager = GetComponent<PlayerInputManager>();
-        _playerInputManager.onPlayerJoined += HandlePlayerJoined;
-        
-        SceneManager.sceneLoaded += HandleSceneLoaded;
-        
-        var commaNames = PlayerPrefs.GetString("AllGameNames");
-        Debug.Log(commaNames);
-        AllGameNames = commaNames.Split(",").ToList();
-        AllGameNames.Remove("");
-    }
-
-    void HandleSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.buildIndex == 0)
-            _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
         else
         {
-            _playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersWhenButtonIsPressed;
-            SaveGame();
+            Destroy(gameObject);
         }
     }
 
-    void SaveGame()
+    void Start()
     {
-        string text = JsonUtility.ToJson(_gameData);
-        Debug.Log(text);
-        
-        PlayerPrefs.SetString(_gameData.GameName, text);
+        UpdateGameState(Gamestate.Initializing);
+    }
 
-        if (AllGameNames.Contains(_gameData.GameName) == false)
+    public void UpdateGameState(Gamestate newState)
+    {
+        OnGamestateChanged?.Invoke(newState);
+
+        switch (newState)
         {
-            AllGameNames.Add(_gameData.GameName);
+            case Gamestate.Initializing:
+                HandleInitializing();
+                break;
+            case Gamestate.Menu:
+                HandleMenu();
+                break;
+            case Gamestate.Loading:
+                break;
+            case Gamestate.Level:
+                break;
+            case Gamestate.Lobby:
+                HandleLobby();
+                break;
+            case Gamestate.Playing:
+                break;
+            default:
+                Debug.LogError($"{this.name} UpdateGameState{newState}");
+                break;
         }
-
-        UpdateGamesList();
     }
 
-    public void LoadGame(string gameName)
+    void HandleLobby()
     {
-         string text = PlayerPrefs.GetString(gameName);
-         _gameData = JsonUtility.FromJson<GameData>(text);
-        SceneManager.LoadScene(1);
+        MenuManager.Instance.UpdateMenuVisibility(MenuManager.MenuTypes.MultiplayerMenu, true);
     }
 
-    void HandlePlayerJoined(PlayerInput playerInput)
+    void HandleMenu()
     {
-        Debug.Log("HandlePlayerJoined " + playerInput);
-        PlayerData playerData = GetPlayerData(playerInput.playerIndex);
-
-        Player player = playerInput.GetComponent<Player>();
-        player.Bind(playerData);
+        MenuManager.Instance.UpdateMenuVisibility(MenuManager.MenuTypes.MainMenu, true);
     }
 
-    PlayerData GetPlayerData(int playerIndex)
+    async void HandleInitializing()
     {
-        if (_gameData.PlayerDatas.Count <= playerIndex)
-        {
-            var playerData = new PlayerData();
-            _gameData.PlayerDatas.Add(playerData);
-        }
+        Debug.Log($"{name} HandleInitializing");
 
-        return _gameData.PlayerDatas[playerIndex];
+        await Task.Delay(3000);
+        UpdateGameState(Gamestate.Menu);
     }
 
-    public void NewGame()
+    public enum Gamestate
     {
-        Debug.Log("NewGame Called");
-        _gameData = new GameData(DateTime.Now.ToString("G"));
-        SceneManager.LoadScene(1);
-    }
-
-    public void DeleteGame(string gameName)
-    {
-        PlayerPrefs.DeleteKey(gameName);
-        AllGameNames.Remove(gameName);
-        UpdateGamesList();
-    }
-
-    void UpdateGamesList()
-    {
-        string commaSeperatedNames = string.Join(",", AllGameNames);
-        PlayerPrefs.SetString("AllGameNames", commaSeperatedNames);
-        PlayerPrefs.Save();
+        Initializing,
+        Menu,
+        Loading,
+        Level,
+        Lobby,
+        Playing
     }
 }

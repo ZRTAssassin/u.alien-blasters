@@ -9,11 +9,11 @@ namespace _Project.Scripts.LevelManagement
         [SerializeField] string _gameName;
         void Start() => GetComponent<Button>().onClick.AddListener(LoadGame);
 
-        public void LoadGame() => GameManager.Instance.LoadGame(_gameName);
+        public void LoadGame() => GameManager_Old.Instance.LoadGame(_gameName);
 
         public void DeleteGame()
         {
-            GameManager.Instance.DeleteGame(_gameName);
+            GameManager_Old.Instance.DeleteGame(_gameName);
             Destroy(gameObject);
         }
 
