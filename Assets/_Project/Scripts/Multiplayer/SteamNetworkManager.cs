@@ -88,7 +88,7 @@ public class SteamNetworkManager : MonoBehaviour
 
         _transport.targetSteamId = id;
 
-        Debug.Log($"Joining room hosted by {_transport.targetSteamId}", this);
+        Debug.Log($"Joining room with id {_transport.targetSteamId}", this);
 
         // if (NetworkManager.Singleton.StartClient())
         // {
