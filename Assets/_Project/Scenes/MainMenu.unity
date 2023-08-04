@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager & InputManager_Facepunch_1
       objectReference: {fileID: 0}
+    - target: {fileID: 6191784882264932706, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_text
+      value: Start Steam Lobby
+      objectReference: {fileID: 0}
     - target: {fileID: 6960081533503187077, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -285,8 +289,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7671981753702058335, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671981753702058335, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671981753702058335, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8645691929674734984, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04370de5a097c1949aa0c52c7408c1e5, type: 3}

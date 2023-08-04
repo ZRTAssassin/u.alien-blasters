@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5045735800383400325}
   - component: {fileID: 3369862633673698567}
   m_Layer: 5
-  m_Name: StartClient
+  m_Name: StartHost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start Game
+  m_text: Start Host
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 6606046126952214252}
   - component: {fileID: 9011183685963778737}
   m_Layer: 5
-  m_Name: StartHost
+  m_Name: StartSteamLobby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Host
+  m_text: Join Steam Lobby
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1250,6 +1250,7 @@ MonoBehaviour:
   _playerListHolder: {fileID: 7082398712239201052}
   _playerDisplayPrefab: {fileID: 462600977891483074, guid: 2d58bdb04e4cfaa40bd4e172f67d1e83, type: 3}
   _networkManagerUI: {fileID: 7671981753702058335}
+  _lobbyMembers: []
 --- !u!114 &3651550938404988075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1548,8 +1549,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6960081533503187077}
   - {fileID: 2468475871791048631}
+  - {fileID: 6960081533503187077}
   - {fileID: 4660264823800917345}
   m_Father: {fileID: 336799787439885111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

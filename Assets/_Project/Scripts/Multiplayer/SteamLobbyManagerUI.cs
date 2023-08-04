@@ -22,8 +22,9 @@ public class SteamLobbyManagerUI : MonoBehaviour
 
     void Start()
     {
-        _hostButton.onClick.AddListener(() => { SteamLobbyManager.Instance.CreateLobby(); });
         _clientButton.onClick.AddListener(() => { SteamLobbyManager.Instance.StartGame(); });
+        //TODO maybe we need to tell the game to create a lobby *after* you start the game?
+        _hostButton.onClick.AddListener(() => { SteamLobbyManager.Instance.CreateLobby(); });
         // when clicking the button you need to start host in the game, and then start a steam lobby where you are also a host.
         // then when you join someone, you join the lobby and also start the client.
 
