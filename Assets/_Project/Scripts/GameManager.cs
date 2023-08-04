@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //TODO maybe init steamworks inside of here?
         UpdateGameState(Gamestate.Initializing);
     }
 
