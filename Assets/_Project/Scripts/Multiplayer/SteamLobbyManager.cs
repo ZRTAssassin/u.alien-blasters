@@ -45,8 +45,7 @@ public class SteamLobbyManager : MonoBehaviour
         SteamMatchmaking.OnLobbyInvite += OnLobbyInvite;
         SteamMatchmaking.OnLobbyGameCreated += OnLobbyGameCreated;
         SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
-
-
+        
         var playername = SteamClient.Name;
         var playersteamid = SteamClient.SteamId;
         Debug.Log($"{playername}, {playersteamid}");
@@ -81,7 +80,7 @@ public class SteamLobbyManager : MonoBehaviour
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
 
-        NetworkManager.Singleton.StartHost();
+        //NetworkManager.Singleton.StartHost();
     }
 
     void StartClient(SteamId id)
@@ -136,7 +135,7 @@ public class SteamLobbyManager : MonoBehaviour
         CurrentLobby = lobby;
         Debug.Log($"OnGameLobbyJoinRequested: Owner: {lobby.Owner}, Id: {id}, IsSame: {isSame}", this);
         CurrentLobby?.Join();
-        StartClient(lobby.Id);
+        //StartClient(lobby.Id);
     }
 
     void OnLobbyGameCreated(Lobby lobby, uint ip, ushort port, SteamId id)
@@ -185,7 +184,6 @@ public class SteamLobbyManager : MonoBehaviour
             Debug.LogError($"Lobby couldn't be created, {result}", this);
             return;
         }
-        //TODO  should probably start host here as well, right?
         lobby.SetFriendsOnly();
         lobby.SetData("name", "Cool Lobby Name");
         lobby.SetJoinable(true);
@@ -193,6 +191,14 @@ public class SteamLobbyManager : MonoBehaviour
         CurrentPlayers = new();
         OnSteamLobbyCreated?.Invoke(lobby);
         Debug.Log($"OnLobbyCreated by {lobby.Id}", this);
+        if (NetworkManager.Singleton.StartHost())
+        {
+            Debug.Log("OnLobbyCreated: StartHost called", this);
+        }
+        else
+        {
+            CurrentLobby = null;
+        }
     }
 
     #endregion
