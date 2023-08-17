@@ -46,6 +46,7 @@ public class SteamLobbyManager : MonoBehaviour
         SteamMatchmaking.OnLobbyGameCreated += OnLobbyGameCreated;
         SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
         
+        // todo Create a client object that gets spawned
         var playername = SteamClient.Name;
         var playersteamid = SteamClient.SteamId;
         Debug.Log($"{playername}, {playersteamid}");

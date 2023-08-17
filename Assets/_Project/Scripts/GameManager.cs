@@ -57,12 +57,12 @@ public class GameManager : MonoBehaviour
 
     void HandleLobby()
     {
-        MenuManager.Instance.UpdateMenuVisibility(MenuManager.MenuTypes.MultiplayerMenu, true);
+        MainMenuManager.Instance.UpdateMenuVisibility(MainMenuManager.MenuTypes.MultiplayerMenu);
     }
 
     void HandleMenu()
     {
-        MenuManager.Instance.UpdateMenuVisibility(MenuManager.MenuTypes.MainMenu, true);
+        MainMenuManager.Instance.UpdateMenuVisibility(MainMenuManager.MenuTypes.MainMenu);
     }
 
     async void HandleInitializing()

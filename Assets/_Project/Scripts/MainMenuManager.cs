@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class MenuManager : MonoBehaviour
+public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] CanvasGroup _mainMenu;
     [SerializeField] CanvasGroup _multiplayerMenu;
@@ -20,8 +20,11 @@ public class MenuManager : MonoBehaviour
         MultiplayerMenu,
         SinglePlayerMenu
     }
+    
+    //TODO If multiplayer menu button is pressed, load lobby scene?
+    //This would give a new scene where it's connected to steam online and everything and would allow character selection fairly easily
 
-    public static MenuManager Instance { get; private set; }
+    public static MainMenuManager Instance { get; private set; }
 
     void Awake()
     {
@@ -43,24 +46,24 @@ public class MenuManager : MonoBehaviour
         _quitButton.onClick.AddListener(() => { Application.Quit(); });
     }
 
-    public void UpdateMenuVisibility(MenuTypes menuName, bool isVisible)
+    public void UpdateMenuVisibility(MenuTypes menuName)
     {
         switch (menuName)
         {
             case MenuTypes.MainMenu:
-                UpdateVisibility(_mainMenu, isVisible);
-                UpdateVisibility(_multiplayerMenu, !isVisible);
-                UpdateVisibility(_singlePlayerMenu, !isVisible);
+                UpdateVisibility(_mainMenu, true);
+                UpdateVisibility(_multiplayerMenu, false);
+                UpdateVisibility(_singlePlayerMenu, false);
                 break;
             case MenuTypes.MultiplayerMenu:
-                UpdateVisibility(_mainMenu, !isVisible);
-                UpdateVisibility(_multiplayerMenu, isVisible);
-                UpdateVisibility(_singlePlayerMenu, !isVisible);
+                UpdateVisibility(_mainMenu, false);
+                UpdateVisibility(_multiplayerMenu, true);
+                UpdateVisibility(_singlePlayerMenu, false);
                 break;
             case MenuTypes.SinglePlayerMenu:
-                UpdateVisibility(_mainMenu, !isVisible);
-                UpdateVisibility(_multiplayerMenu, !isVisible);
-                UpdateVisibility(_singlePlayerMenu, isVisible);
+                UpdateVisibility(_mainMenu, false);
+                UpdateVisibility(_multiplayerMenu, false);
+                UpdateVisibility(_singlePlayerMenu, true);
                 break;
             default:
                 Debug.Log($"{name} UpdateMenuVisibility called and got in a weid state. {menuName}");
@@ -70,6 +73,8 @@ public class MenuManager : MonoBehaviour
 
     void UpdateVisibility(CanvasGroup canvasGroup, bool isVisible)
     {
+        
+        if (canvasGroup is null) return;
         if (isVisible)
         {
             canvasGroup.alpha = 1;

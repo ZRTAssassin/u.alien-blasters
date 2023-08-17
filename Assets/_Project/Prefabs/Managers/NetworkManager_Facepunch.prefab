@@ -770,14 +770,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2792603707138967748}
-  - component: {fileID: 8383045177804110535}
   - component: {fileID: 6562000046808082922}
   - component: {fileID: 93533394498768636}
   - component: {fileID: 5277733825625007514}
   - component: {fileID: 3651550938404988075}
   - component: {fileID: 1880400520227540393}
   m_Layer: 0
-  m_Name: NetworkManager & InputManager_Facepunch
+  m_Name: NetworkManager_Facepunch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -799,50 +798,6 @@ Transform:
   - {fileID: 336799787439885111}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8383045177804110535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5904847564334825802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NotificationBehavior: 3
-  m_MaxPlayerCount: 2
-  m_AllowJoining: 1
-  m_JoinBehavior: 2
-  m_PlayerJoinedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_PlayerLeftEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_JoinAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Join
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 19271c9c-631d-4ae7-a421-930be06d504c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -5514138476926248915, guid: 2543e1e9e7695ee4abe4fbc37dc6bfa9, type: 3}
-  m_PlayerPrefab: {fileID: 36773516923863462, guid: 8e6bcd75a104ed4489771490b589bbcf, type: 3}
-  m_SplitScreen: 0
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!114 &6562000046808082922
 MonoBehaviour:
   m_ObjectHideFlags: 0
