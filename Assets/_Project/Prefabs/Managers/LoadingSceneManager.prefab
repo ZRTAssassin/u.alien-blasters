@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 2569447097412149085}
   - component: {fileID: 74613351545210773}
   - component: {fileID: 2413524318620169410}
+  - component: {fileID: 8903721795325720379}
   m_Layer: 5
   m_Name: LoadingSceneManager
   m_TagString: Untagged
@@ -242,8 +243,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1906967778627106561}
   - {fileID: 2811746076725273105}
+  - {fileID: 1906967778627106561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -339,3 +340,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 2482818648161731702}
+--- !u!114 &8903721795325720379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657144497324865867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a5978688d3a1f4fa80f5f89831d881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadingBackgroundImage: {fileID: 5471896059282177855}
+  _loadingStepTime: 0.1
+  _loadingStepValue: 0.1

@@ -10,6 +10,7 @@ public class LoadingSceneManager : SingletonPersistent<LoadingSceneManager>
 {
     public SceneName SceneActive => _sceneActive;
     SceneName _sceneActive;
+    public event Action<SceneName> SceneChanged; 
 
     public void Init()
     {
@@ -29,7 +30,7 @@ public class LoadingSceneManager : SingletonPersistent<LoadingSceneManager>
         LoadingFadeEffect.Instance.FadeIn();
 
         yield return new WaitUntil(() => LoadingFadeEffect._canLoad);
-        
+        SceneChanged?.Invoke(sceneToLoad);
         if (isNetworkSessionActive)
         {
             if (NetworkManager.Singleton.IsServer)

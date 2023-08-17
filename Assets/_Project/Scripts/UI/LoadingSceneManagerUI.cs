@@ -10,11 +10,18 @@ public class LoadingSceneManagerUI : MonoBehaviour
 
     void Start()
     {
-        
+        LoadingSceneManager.Instance.SceneChanged += HandleSceneChanged;
+        _text.text = LoadingSceneManager.Instance.SceneActive.ToString();
     }
 
-    void HandleOnGamestateChanged(LoadingSceneManager.SceneName newState)
+    void OnDestroy()
     {
-        _text.text = newState.ToString();
+        
+        LoadingSceneManager.Instance.SceneChanged -= HandleSceneChanged;
+    }
+
+    void HandleSceneChanged(LoadingSceneManager.SceneName sceneName)
+    {
+        _text.text = sceneName.ToString();
     }
 }

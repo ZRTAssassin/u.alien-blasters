@@ -316,9 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36303ac7a3c8804ea63f34fad5cd263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenu: {fileID: 624729809307444470}
-  _multiplayerMenu: {fileID: 0}
-  _singlePlayerMenu: {fileID: 3065445506121972005}
   _singlePlayerButton: {fileID: 5035986596828374369}
   _multiplayerButton: {fileID: 65075525679431211}
   _quitButton: {fileID: 5089234185248661194}
@@ -676,9 +673,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4100754428059349299}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &4603206360168051538
 GameObject:
