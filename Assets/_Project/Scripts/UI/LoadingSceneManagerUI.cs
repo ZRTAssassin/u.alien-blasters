@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameManagerUI : MonoBehaviour
+public class LoadingSceneManagerUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _text;
 
     void Start()
     {
-        GameManager.Instance.OnGamestateChanged += HandleOnGamestateChanged;
+        
     }
 
-    void HandleOnGamestateChanged(GameManager.Gamestate newState)
+    void HandleOnGamestateChanged(LoadingSceneManager.SceneName newState)
     {
         _text.text = newState.ToString();
     }

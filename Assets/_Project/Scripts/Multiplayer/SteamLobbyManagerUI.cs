@@ -19,6 +19,10 @@ public class SteamLobbyManagerUI : MonoBehaviour
     [SerializeField] CanvasGroup _networkManagerUI;
     [SerializeField] List<GameObject> _lobbyMembers = new();
 
+    void Awake()
+    {
+        
+    }
 
     void Start()
     {

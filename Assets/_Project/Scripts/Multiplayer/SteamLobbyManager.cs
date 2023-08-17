@@ -30,6 +30,14 @@ public class SteamLobbyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        try
+        {
+            SteamClient.Init(480);
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine(e.ToString());
+        }
     }
     // todo: remove start client from joining lobby
     // remove default prefab so players don't auto spawn in when joining lobby
