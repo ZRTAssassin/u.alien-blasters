@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
         });
         _multiplayerButton.onClick.AddListener(() =>
         {
-            
+            LoadingSceneManager.Instance.LoadScene(LoadingSceneManager.SceneName.MultiPlayerLobby, false);
         });
         _quitButton.onClick.AddListener(() =>
         {

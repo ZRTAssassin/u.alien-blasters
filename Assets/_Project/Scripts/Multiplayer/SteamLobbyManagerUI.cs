@@ -21,12 +21,13 @@ public class SteamLobbyManagerUI : MonoBehaviour
 
     void Awake()
     {
-        
+        UpdateVisibility(false);
+        //
     }
 
     void Start()
     {
-        _clientButton.onClick.AddListener(() => { SteamLobbyManager.Instance.StartGame(); });
+        _clientButton.onClick.AddListener(OnClientClicked);
         //TODO maybe we need to tell the game to create a lobby *after* you start the game?
         _hostButton.onClick.AddListener(() => { SteamLobbyManager.Instance.CreateLobby(); });
         // when clicking the button you need to start host in the game, and then start a steam lobby where you are also a host.
@@ -35,8 +36,21 @@ public class SteamLobbyManagerUI : MonoBehaviour
         SteamLobbyManager.Instance.OnFriendJoin += SteamLobbyManagerOnFriendJoin;
         SteamLobbyManager.Instance.OnFriendLeave += SteamLobbyManagerOnFriendLeave;
         SteamLobbyManager.Instance.OnSteamLobbyCreated += SteamLobbyManagerOnLobbyCreated;
+        
+        StartCoroutine(FadeInLobbyControls());
     }
 
+    IEnumerator FadeInLobbyControls()
+    {
+        yield return new WaitForSeconds(2.0f);
+        UpdateVisibility(true);
+    }
+
+    void OnClientClicked()
+    {
+        Debug.Log("SteamLobbyManagerUI - OnClientClicked: ");
+        SteamLobbyManager.Instance.StartGame();
+    }
     void SteamLobbyManagerOnLobbyCreated(Lobby obj)
     {
         while (_playerListHolder.transform.childCount > 0)

@@ -113,6 +113,7 @@ public class LoadingSceneManager : SingletonPersistent<LoadingSceneManager>
         Bootstrap,
         MainMenu,
         SinglePlayerCharacterSelection,
+        MultiPlayerLobby,
         CharacterSelection,
         Controls,
         Gameplay,

@@ -57,7 +57,7 @@ public class SteamLobbyManager : MonoBehaviour
         // todo Create a client object that gets spawned
         var playername = SteamClient.Name;
         var playersteamid = SteamClient.SteamId;
-        Debug.Log($"{playername}, {playersteamid}");
+        Debug.Log($"SteamLobbyManager.cs - Start: {playername}, {playersteamid}");
     }
 
     void OnDestroy()
