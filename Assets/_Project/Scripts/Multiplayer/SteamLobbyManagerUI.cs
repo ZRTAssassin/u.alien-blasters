@@ -37,9 +37,15 @@ public class SteamLobbyManagerUI : MonoBehaviour
         SteamLobbyManager.Instance.OnFriendLeave += SteamLobbyManagerOnFriendLeave;
         SteamLobbyManager.Instance.OnSteamLobbyCreated += SteamLobbyManagerOnLobbyCreated;
         
-        StartCoroutine(FadeInLobbyControls());
+        LoadingSceneManager.Instance.SceneChanged += HandleSceneChanged;
     }
-
+    void HandleSceneChanged(LoadingSceneManager.SceneName obj)
+    {
+        if (obj == LoadingSceneManager.SceneName.MultiPlayerLobby)
+        {
+            StartCoroutine(FadeInLobbyControls());
+        }
+    }
     IEnumerator FadeInLobbyControls()
     {
         yield return new WaitForSeconds(2.0f);

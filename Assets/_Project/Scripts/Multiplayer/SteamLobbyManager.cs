@@ -30,6 +30,7 @@ public class SteamLobbyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         try
         {
             SteamClient.Init(480);
@@ -53,12 +54,15 @@ public class SteamLobbyManager : MonoBehaviour
         SteamMatchmaking.OnLobbyInvite += OnLobbyInvite;
         SteamMatchmaking.OnLobbyGameCreated += OnLobbyGameCreated;
         SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
-        
+
         // todo Create a client object that gets spawned
         var playername = SteamClient.Name;
         var playersteamid = SteamClient.SteamId;
         Debug.Log($"SteamLobbyManager.cs - Start: {playername}, {playersteamid}");
+       
     }
+
+
 
     void OnDestroy()
     {
@@ -141,6 +145,7 @@ public class SteamLobbyManager : MonoBehaviour
             Debug.Log($"OnGameLobbyJoinRequested: {isSame}");
             return;
         }
+
         CurrentLobby = lobby;
         Debug.Log($"OnGameLobbyJoinRequested: Owner: {lobby.Owner}, Id: {id}, IsSame: {isSame}", this);
         CurrentLobby?.Join();
@@ -159,8 +164,10 @@ public class SteamLobbyManager : MonoBehaviour
 
     void OnLobbyMemberLeave(Lobby lobby, Friend friend)
     {
-        if (friend.Id == lobby.Owner.Id) {}
-        
+        if (friend.Id == lobby.Owner.Id)
+        {
+        }
+
         Debug.Log($"OnLobbyMemberLeave: {friend.Name} left");
         RemovePlayerFromPlayerList(friend);
     }
@@ -193,6 +200,7 @@ public class SteamLobbyManager : MonoBehaviour
             Debug.LogError($"Lobby couldn't be created, {result}", this);
             return;
         }
+
         lobby.SetFriendsOnly();
         lobby.SetData("name", "Cool Lobby Name");
         lobby.SetJoinable(true);
