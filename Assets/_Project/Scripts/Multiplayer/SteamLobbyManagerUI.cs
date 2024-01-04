@@ -59,6 +59,11 @@ public class SteamLobbyManagerUI : MonoBehaviour
     }
     void SteamLobbyManagerOnLobbyCreated(Lobby obj)
     {
+        ResetPlayerListUI();
+    }
+
+    void ResetPlayerListUI()
+    {
         while (_playerListHolder.transform.childCount > 0)
         {
             DestroyImmediate(_playerListHolder.transform.GetChild(0).gameObject);
@@ -67,7 +72,9 @@ public class SteamLobbyManagerUI : MonoBehaviour
 
     async void SteamLobbyManagerOnFriendLeave(Friend friend)
     {
-        //todo, just read the list of players and redo display? Or give them an ID or something to use easily OH WAIT
+        //todo, just read the list of players and redo display? Or give them an ID or something to use easily?
+        //TODO reread the list and reset it.
+        ResetPlayerListUI();
         foreach (var player in SteamLobbyManager.CurrentPlayers)
         {
             GameObject newPlayerGo = Instantiate(_playerDisplayPrefab, _playerListHolder.transform);
@@ -87,6 +94,7 @@ public class SteamLobbyManagerUI : MonoBehaviour
 
     async void SteamLobbyManagerOnFriendJoin(Friend friend)
     {
+        ResetPlayerListUI();
         foreach (var player in SteamLobbyManager.CurrentPlayers)
         {
             GameObject newPlayerGo = Instantiate(_playerDisplayPrefab, _playerListHolder.transform);
